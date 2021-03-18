@@ -1,1 +1,6 @@
-export const placeholder = 'REPLACE_ME'
+export {
+  param,
+  Param,
+  path,
+  Path,
+} from './path'
