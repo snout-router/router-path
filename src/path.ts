@@ -1,4 +1,5 @@
-import {escape, unwrap} from './regexp'
+import {escape, unwrap} from '@packula/regexp'
+
 import {AllowOmitUndefined, Cast} from './types'
 
 export type AnyParam = Param<string, any>
