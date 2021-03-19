@@ -1,4 +1,4 @@
-name: Publish package
+name: Release
 on:
   push:
     tags:
@@ -21,6 +21,10 @@ jobs:
       run: make node_modules
     - name: Make
       run: make ci
+    - name: Release
+      uses: softprops/action-gh-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Set package version
       run: make set-package-version
     - name: Publish package
