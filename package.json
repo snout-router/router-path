@@ -4,7 +4,7 @@
   "description": "A simple, light-weight, type-safe router path implementation",
   "repository": "packula/router-path",
   "bugs": "https://github.com/packula/router-path/issues",
-  "homepage": "https://packula.dev/",
+  "homepage": "https://packula.dev",
   "author": "Erin Millard <ezzatron@gmail.com>",
   "license": "MIT",
   "publishConfig": {
