@@ -1,4 +1,4 @@
-import {param, path} from '../../src/path'
+import {param, path} from '../../src/main'
 
 describe('paths', () => {
   describe('param()', () => {
