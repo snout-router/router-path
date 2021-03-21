@@ -24,12 +24,12 @@
     "prepare": "rollup --config rollup.config.js"
   },
   "dependencies": {
-    "@packula/regexp": "^0.1.1"
+    "@packula/regexp": "^0.2.0"
   },
   "devDependencies": {
     "@packula/eslint-config": "^1.1.1",
     "@packula/jest-config": "^1.0.1",
-    "@packula/rollup-config": "^1.1.0",
+    "@packula/rollup-config": "^1.1.1",
     "@packula/tsconfig": "^1.0.2",
     "@typescript-eslint/eslint-plugin": "^4.18.0",
     "@typescript-eslint/parser": "^4.18.0",
