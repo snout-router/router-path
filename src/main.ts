@@ -1,4 +1,4 @@
-import {escape, unwrap} from '@packula/regexp'
+import {escape} from '@packula/regexp'
 
 import {AllowOmitUndefined, Cast} from './types'
 
@@ -104,7 +104,7 @@ export function path<Params extends ParamsOrStrings> (
       let i = 0
 
       for (const param of normalized) {
-        pattern += `${unwrap(param.exp)}${escape(ends[i++])}`
+        pattern += `${param.exp.source}${escape(ends[i++])}`
       }
 
       exp = new RegExp(`${pattern}$`, 'u')
