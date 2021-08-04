@@ -1,10 +1,10 @@
 {
-  "name": "@packula/router-path",
+  "name": "@snout/router-path",
   "version": "0.0.0",
   "description": "A simple, light-weight, type-safe router path implementation",
-  "repository": "packula/router-path",
-  "bugs": "https://github.com/packula/router-path/issues",
-  "homepage": "https://packula.dev",
+  "repository": "snout-router/router-path",
+  "bugs": "https://github.com/snout-router/router-path/issues",
+  "homepage": "https://snout.dev",
   "author": "Erin Millard <ezzatron@gmail.com>",
   "license": "MIT",
   "publishConfig": {
@@ -24,13 +24,13 @@
     "prepare": "rollup --config rollup.config.js"
   },
   "dependencies": {
-    "@packula/regexp": "^0.2.0"
+    "@snout/regexp": "^0.2.1"
   },
   "devDependencies": {
-    "@packula/eslint-config": "^1.1.1",
-    "@packula/jest-config": "^1.0.1",
-    "@packula/rollup-config": "^1.1.1",
-    "@packula/tsconfig": "^1.0.2",
+    "@snout/eslint-config": "^1.1.2",
+    "@snout/jest-config": "^1.0.2",
+    "@snout/rollup-config": "^1.1.2",
+    "@snout/tsconfig": "^1.0.3",
     "@typescript-eslint/eslint-plugin": "^4.18.0",
     "@typescript-eslint/parser": "^4.18.0",
     "codecov": "^3.0.2",

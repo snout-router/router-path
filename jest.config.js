@@ -1,1 +1,1 @@
-module.exports = require('@packula/jest-config')
+module.exports = require('@snout/jest-config')

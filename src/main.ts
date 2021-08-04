@@ -1,4 +1,4 @@
-import {escape} from '@packula/regexp'
+import {escape} from '@snout/regexp'
 
 import {AllowOmitUndefined, Cast} from './types'
 
