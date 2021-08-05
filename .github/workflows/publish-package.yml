@@ -15,8 +15,6 @@ jobs:
       with:
         node-version: '16'
         registry-url: 'https://registry.npmjs.org'
-    - name: Check Node.js version
-      run: node -v
     - name: Install dependencies
       run: make node_modules
     - name: Make
