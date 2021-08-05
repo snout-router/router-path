@@ -1,4 +1,4 @@
-JS_SOURCE_FILES += $(shell PATH="$(PATH)" git-find '*.ts')
+JS_SOURCE_FILES += $(shell find src -type f -iname "*.ts" 2> /dev/null)
 _JS_TEST_ASSETS := $(shell find test -type f -not -iname "*.ts" 2> /dev/null)
 
 ################################################################################
