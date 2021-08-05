@@ -5,8 +5,8 @@ on:
   schedule:
   - cron: 0 14 * * 0 # Sunday 2PM UTC = Monday 12AM AEST
 jobs:
-  test:
-    name: Node.js stable
+  ci:
+    name: CI
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -14,7 +14,7 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: '12'
+        node-version: '16'
     - name: Check Node.js version
       run: node -v
     - name: Install dependencies
