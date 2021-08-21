@@ -14,6 +14,12 @@ JS_SIZE_LIMIT_REQ += dist
 
 ################################################################################
 
+.PHONY: website-%
+website-%:
+	$(MAKE) -C website "$*"
+
+################################################################################
+
 dist: rollup.config.js tsconfig.json node_modules $(JS_SOURCE_FILES)
 	node_modules/.bin/rollup --config rollup.config.js
 

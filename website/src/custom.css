@@ -1,0 +1,69 @@
+:root {
+  --brand-color-h: 350;
+  --brand-color-s: 100%;
+  --brand-color-l: 85%;
+  --brand-color-hs: var(--brand-color-h), var(--brand-color-s);
+  --brand-color-hsl: var(--brand-color-hs), var(--brand-color-l);
+  --brand-color: hsl(var(--brand-color-hsl));
+
+  --brand-color-darkish: hsl(var(--brand-color-hs), calc(var(--brand-color-l) * 0.95));
+  --brand-color-dark: hsl(var(--brand-color-hs), calc(var(--brand-color-l) * 0.85));
+  --brand-color-darker: hsl(var(--brand-color-hs), calc(var(--brand-color-l) * 0.7));
+  --brand-color-darkest: hsl(var(--brand-color-hs), calc(var(--brand-color-l) * 0.55));
+
+  --brand-color-lightish: hsl(var(--brand-color-hs), calc(var(--brand-color-l) * 1.05));
+  --brand-color-light: hsl(var(--brand-color-hs), calc(var(--brand-color-l) * 1.15));
+  --brand-color-lighter: hsl(var(--brand-color-hs), calc(var(--brand-color-l) * 1.3));
+  --brand-color-lightest: hsl(var(--brand-color-hs), calc(var(--brand-color-l) * 1.45));
+
+  --ifm-color-primary: var(--brand-color);
+
+  --ifm-color-primary-darkish: var(--brand-color-darkish);
+  --ifm-color-primary-dark: var(--brand-color-dark);
+  --ifm-color-primary-darker: var(--brand-color-darker);
+  --ifm-color-primary-darkest: var(--brand-color-darkest);
+
+  --ifm-color-primary-lightish: var(--brand-color-lightish);
+  --ifm-color-primary-light: var(--brand-color-light);
+  --ifm-color-primary-lighter: var(--brand-color-lighter);
+  --ifm-color-primary-lightest: var(--brand-color-lightest);
+
+  --ifm-font-color-base-inverse: hsl(0, 0%, 10%);
+
+  --ifm-code-font-size: 95%;
+}
+
+:root[data-theme='light'] {
+  --ifm-color-primary: var(--brand-color-darker);
+}
+
+.navbar__logo {
+  margin-top: 0.1rem;
+  margin-right: 0.7rem;
+}
+
+:root .hero.hero--primary {
+  --ifm-hero-background-color: var(--brand-color);
+}
+
+.hero.hero--primary {
+  position:  relative;
+  background: linear-gradient(90deg, var(--brand-color), var(--brand-color-lightish));
+}
+.hero.hero--primary:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  mask-image: linear-gradient(to bottom, transparent, black);
+  background: linear-gradient(90deg, var(--brand-color-darkish), var(--brand-color));
+}
+.hero.hero--primary .container {
+  z-index: 1;
+}
+
+.hero.hero--primary .button.button--secondary.button--outline:not(.button--active):not(:hover) {
+  color: var(--ifm-hero-text-color);
+}

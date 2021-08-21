@@ -1,0 +1,31 @@
+{
+  "private": true,
+  "dependencies": {
+    "@snout/docusaurus-config": "^1.2.0",
+    "clsx": "^1.1.1",
+    "typescript": "^4.3.5"
+  },
+  "devDependencies": {
+    "@snout/eslint-config-react": "^1.0.0",
+    "@typescript-eslint/eslint-plugin": "^4.29.2",
+    "@typescript-eslint/parser": "^4.29.2",
+    "eslint": "^7.32.0",
+    "eslint-plugin-import": "^2.24.0",
+    "eslint-plugin-jest": "^24.4.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.0",
+    "eslint-plugin-react": "^7.24.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.5%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

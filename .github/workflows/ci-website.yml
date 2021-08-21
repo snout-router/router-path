@@ -1,0 +1,23 @@
+name: CI (website)
+on:
+  push:
+  pull_request:
+jobs:
+  ci:
+    name: CI
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+    - name: Install dependencies
+      run: make node_modules
+    - name: Install website dependencies
+      working-directory: website
+      run: make node_modules
+    - name: Make
+      working-directory: website
+      run: make ci
