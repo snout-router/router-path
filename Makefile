@@ -1,6 +1,8 @@
 JS_SOURCE_FILES += $(shell find src -type f -iname "*.ts" 2> /dev/null)
 _JS_TEST_ASSETS := $(shell find test -type f -not -iname "*.ts" 2> /dev/null)
 
+JS_SIZE_LIMIT_REQ += dist
+
 ################################################################################
 
 -include .makefiles/Makefile

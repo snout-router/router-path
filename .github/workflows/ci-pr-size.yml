@@ -1,0 +1,20 @@
+name: CI (PR size)
+on:
+  pull_request:
+jobs:
+  ci:
+    name: CI
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+    - name: Publish size report
+      uses: andresz1/size-limit-action@v1
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        build_script: size-limit-build
+        clean_script: size-limit-clean
