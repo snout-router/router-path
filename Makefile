@@ -13,6 +13,6 @@ _JS_TEST_ASSETS := $(shell find test -type f -not -iname "*.ts" 2> /dev/null)
 ################################################################################
 
 dist: rollup.config.js tsconfig.json node_modules $(JS_SOURCE_FILES)
-	rollup --config rollup.config.js
+	node_modules/.bin/rollup --config rollup.config.js
 
 	@touch "$@"
