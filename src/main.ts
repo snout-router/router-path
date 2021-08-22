@@ -121,7 +121,7 @@ type ParamsOrStrings = ParamOrString[]
  * Constructs the type for the result of a successful match against a path with the supplied param types
  */
 type Result<Params extends AnyParams> = Params extends Array<Param<infer Name, any>>
-  ? AllowOmitUndefined<{ [Key in Name]: ParamResult<Extract<Params[number], Param<Key, any>>> }>
+  ? { [Key in Name]: ParamResult<Extract<Params[number], Param<Key, any>>> }
   : { [Key in string]: any }
 
 /**
@@ -132,7 +132,9 @@ type ParamResult<Subject extends AnyParam> = Subject extends Param<string, any, 
 /**
  * Constructs the type for acceptable input when building a path with the supplied param types
  */
-type Args<Params extends AnyParams> = Result<Params> & { [Key in string]: any }
+type Args<Params extends AnyParams> = Params extends Array<Param<infer Name, any>>
+  ? AllowOmitUndefined<{ [Key in Name]: ParamArg<Extract<Params[number], Param<Key, any>>> }> & { [Key in string]: any }
+  : { [Key in string]: any }
 
 /**
  * Normalizes an indexed access type (i.e. an array type) of param types, using NormalizeParam
