@@ -11,17 +11,17 @@ export type AnyParam = Param<string, any>
  * - All other params are returned as-is
  */
 export type NormalizeParam<NameOrParam extends ParamOrString> = NameOrParam extends string
-  ? Param<NameOrParam, string>
+  ? Param<NameOrParam>
   : Cast<NameOrParam, AnyParam>
 
-export interface Param<Name extends string, Arg, Result = Arg> {
+export interface Param<Name extends string, Arg = string, Result = Arg> {
   readonly name: Name
   readonly exp: RegExp
   build: (arg: Arg) => string
   parse: (match: string) => Result
 }
 
-export function param<Name extends string> (name: Name, exp: RegExp = /([^/]+)/): Param<Name, string> {
+export function param<Name extends string> (name: Name, exp: RegExp = /([^/]+)/): Param<Name> {
   return {
     name,
     exp,
