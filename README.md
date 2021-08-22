@@ -1,4 +1,4 @@
-# Snout router path
+# Snout Router Path
 
 [![Current version][badge-version-image]][badge-version-link]
 [![Bundle size][badge-bundle-image]][badge-bundle-link]
