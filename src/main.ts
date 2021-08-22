@@ -45,7 +45,7 @@ export type ParamArg<Subject extends AnyParam> = Subject extends Param<string, i
 export type ParamOrString = AnyParam | string
 
 export interface Path<Params extends AnyParams> {
-  build: (params: Args<Params>) => string
+  build: (args: Args<Params>) => string
   match: (path: string) => Result<Params> | undefined
   test: (path: string) => boolean
 }
