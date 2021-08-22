@@ -1,6 +1,24 @@
-import {param, path} from '../../src/main'
+import {normalizeParam, param, path} from '../../src/main'
 
 describe('paths', () => {
+  describe('normalizeParam()', () => {
+    it('should convert param names into params', () => {
+      const subject = normalizeParam('p1')
+
+      expect(subject.name).toBe('p1')
+      expect(subject.exp).toBeInstanceOf(RegExp)
+      expect(typeof subject.build).toBe('function')
+      expect(typeof subject.parse).toBe('function')
+      expect(path`/a/${subject}/b`.match('/a/x/b')).toStrictEqual({p1: 'x'})
+    })
+
+    it('should return params unchanged', () => {
+      const subject = param('p1')
+
+      expect(normalizeParam(subject)).toBe(subject)
+    })
+  })
+
   describe('param()', () => {
     it('should accept params with custom expressions', () => {
       const subject = path`/a/${param('p1', /(xy|yz|[𝓍𝓎])/u)}`

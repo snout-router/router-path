@@ -14,6 +14,18 @@ export type NormalizeParam<NameOrParam extends ParamOrString> = NameOrParam exte
   ? Param<NameOrParam, string>
   : Cast<NameOrParam, AnyParam>
 
+/**
+ * Normalizes a route param
+ *
+ * - Strings become the name of the param, and the Arg and Result types become "string"
+ * - All other params are returned as-is
+ */
+export function normalizeParam<NameOrParam extends ParamOrString> (
+  nameOrParam: NameOrParam,
+): NormalizeParam<NameOrParam> {
+  return (typeof nameOrParam === 'string' ? param(nameOrParam) : nameOrParam) as NormalizeParam<NameOrParam>
+}
+
 export interface Param<Name extends string, Arg, Result = Arg> {
   name: Name
   exp: RegExp
@@ -59,7 +71,7 @@ export function path<Params extends ParamsOrStrings> (
   type ResultForParams = Result<NormalizedParams>
 
   const [start, ...ends] = literals
-  const normalized = params.map(p => typeof p === 'string' ? param(p) : p) as NormalizedParams
+  const normalized = params.map(normalizeParam) as NormalizedParams
   let exp: RegExp | undefined
 
   return {

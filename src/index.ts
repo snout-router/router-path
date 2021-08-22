@@ -1,5 +1,6 @@
 export {
   AnyParam,
+  normalizeParam,
   NormalizeParam,
   param,
   Param,
