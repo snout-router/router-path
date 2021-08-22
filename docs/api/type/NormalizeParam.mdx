@@ -1,0 +1,38 @@
+---
+id: NormalizeParam
+title: NormalizeParam
+sidebar_label: NormalizeParam
+hide_title: true
+---
+
+# `NormalizeParam`
+
+Produces a [`Param`] type from a supplied string [literal type] or [`Param`]
+type. This utility type is a counterpart to the [`normalizeParam`] function.
+
+This type is useful for implementing [custom parameters] where one of the inputs
+is another parameter that can also be expressed as a string. An example is the
+`optional` parameters implemented by [`@snout/router-path-extras`].
+
+```ts no-transpile
+import {NormalizeParam, Param} from '@snout/router-path'
+
+type ParamA = Param<'a', number>
+
+type NormalizedA = NormalizeParam<ParamA> // NormalizedA is Param<'a', number>
+type NormalizedB = NormalizeParam<'b'>    // NormalizedB is Param<'b', string>
+```
+
+:::tip Try me!
+
+[Try this example in the TypeScript Playground](https://www.typescriptlang.org/play?#code/JYWwDg9gTgLgBAbwHLRAQwDbAF4FMAKaUaIANHIcSAL5wBmUEIcA5AAIDOAdhAK4wB6Rv1xQAtGDQwAFiwBQcmAE8wuCkRIBBOAF51VADws0Lcl14gARqIB8C5argoo6LHgAm2vc9c4CGkANKLRs4AQEnVEw-TzhgDn0SIxMzC2soOwc1H2iPACFdSJdc-0MWSxZQuGrwot98uITgwPLTOA4YKGAuAHMbIA)
+
+:::
+
+<!-- References -->
+
+[`normalizeParam`]: ../normalizeParam.mdx
+[`Param`]: Param.mdx
+
+[`@snout/router-path-extras`]: https://snout.dev/router-path-extras
+[literal type]: https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#literal-types

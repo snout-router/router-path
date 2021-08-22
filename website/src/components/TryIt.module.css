@@ -1,0 +1,23 @@
+.tryIt {
+  display: flex;
+  align-items: center;
+  padding: 2rem 0;
+  width: 100%;
+  background-color: var(--ifm-color-emphasis-100);
+}
+
+.smallOnly {
+  text-align: center;
+}
+
+@media (max-width: 996px) {
+  .largeOnly {
+    display: none;
+  }
+}
+
+@media (min-width: 997px) {
+  .smallOnly {
+    display: none;
+  }
+}

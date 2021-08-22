@@ -4,7 +4,7 @@
   "description": "A simple, light-weight, type-safe router path implementation",
   "repository": "snout-router/router-path",
   "bugs": "https://github.com/snout-router/router-path/issues",
-  "homepage": "https://snout.dev",
+  "homepage": "https://snout.dev/router-path",
   "author": "Erin Millard <ezzatron@gmail.com>",
   "license": "MIT",
   "publishConfig": {

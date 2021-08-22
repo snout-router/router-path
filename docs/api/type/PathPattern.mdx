@@ -1,0 +1,107 @@
+---
+id: PathPattern
+title: PathPattern
+sidebar_label: PathPattern
+hide_title: true
+---
+
+# `PathPattern`
+
+The `PathPattern` interface is implemented by the [path pattern] objects that
+are created when using the [`path`] function.
+
+## Methods {#methods}
+
+### `build` {#method-build}
+
+Build a path.
+
+```ts no-transpile
+function build (args: { [paramName: string]: any }): string
+```
+
+#### Parameters {#method-build-parameters}
+
+Accepts a single argument - an object containing the arguments for each route
+parameter.
+
+The keys of the `args` object must match the names of the [path pattern]'s route
+parameters. The values must also be of the correct type for each parameter. When
+a parameter accepts `undefined` arguments, omitting the argument is also
+allowed.
+
+#### Return value {#method-build-return-value}
+
+A path string matching the [path pattern], with each of the parameters filled
+with a formatted version of the supplied argument.
+
+### `match` {#method-match}
+
+Check if a path matches the pattern, and return arguments if the match is
+successful.
+
+```ts no-transpile
+function match (path: string): { [paramName: string]: any } | undefined
+```
+
+#### Parameters {#method-match-parameters}
+
+Accepts a single argument - the path string to match against.
+
+#### Return value {#method-match-return-value}
+
+If the supplied path string matches the pattern, `match` will return an object
+with keys matching the names of the [path pattern]'s route parameters. The
+string arguments will be parsed into values of the appropriate type for each
+parameter.
+
+If the path does not match the pattern, `match` will return `undefined`.
+
+### `test` {#method-test}
+
+Check if a path matches the pattern.
+
+```ts no-transpile
+function test (path: string): boolean
+```
+
+#### Parameters {#method-test-parameters}
+
+Accepts a single argument - the path string to match against.
+
+#### Return value {#method-test-return-value}
+
+A boolean value indicating whether the path matched the pattern or not.
+
+## Type variables {#type-variables}
+
+The `PathPattern` type is a [generic] type:
+
+    PathPattern<Params extends Array<Param<string, any>>>
+
+### `Params` {#type-variable-params}
+
+The type of parameters contained in the [path pattern].
+
+Typically, you would not need to manually specify this type variable, as the
+parameter types are automatically inferred when calling the [`path`] function to
+create path patterns:
+
+```ts no-transpile
+import {path} from '@snout/router-path'
+
+const user = path`/user/${'id'}` // user has a type of PathPattern<[Param<'id', string>]>
+```
+
+:::tip Try me!
+
+[Try this example in the TypeScript Playground](https://www.typescriptlang.org/play?#code/JYWwDg9gTgLgBAbzAQxgCwL5wGZQiOAcgAEBnAOwgFcYB6PGgUygFoV1CAoTgYwnNLwqpZnAC8cdmgAGtYc1oASBIWAATQhmlxatOPKhw0yUnGRwYATzCM4EbHAAKqNM5gxm5ADwBtZ1GQQL1UNABo4QShgcgBzAD4AXTigA)
+
+:::
+
+<!-- References -->
+
+[`path`]: ../path.mdx
+[path pattern]: ../../guides/path-patterns.mdx
+
+[generic]: https://www.typescriptlang.org/docs/handbook/2/generics.html

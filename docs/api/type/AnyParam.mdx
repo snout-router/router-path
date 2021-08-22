@@ -1,0 +1,25 @@
+---
+id: AnyParam
+title: AnyParam
+sidebar_label: AnyParam
+hide_title: true
+---
+
+# `AnyParam`
+
+A utility type for use when you need to be able to accept any valid [`Param`]
+type.
+
+```ts no-transpile
+import {AnyParam} from '@snout/router-path'
+```
+
+Functionally equivalent to:
+
+```ts no-transpile
+Param<string, any>
+```
+
+<!-- References -->
+
+[`param`]: Param.mdx

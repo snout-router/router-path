@@ -1,0 +1,140 @@
+---
+id: getting-started
+title: Getting started
+sidebar_label: Getting started
+---
+
+import Link from '@docusaurus/Link'
+import Tabs from '@theme/Tabs'
+import TabItem from '@theme/TabItem'
+
+import Sandbox from '../../website/src/components/Sandbox.js'
+import {GETTING_STARTED_ID, GETTING_STARTED_URL} from '../../website/src/sandbox.js'
+
+Welcome to **Snout Router Path**! 🐽
+
+In this guide, we'll walk you through how to install **Snout Router Path**,
+create your first path pattern, match a path against your new pattern, and build
+a path from the same pattern. Let's dive in!
+
+## Step 1: Installation {#installation}
+
+You can install **Snout Router Path** from the NPM registry using any modern
+package manager:
+
+<Tabs
+  groupId="package-managers"
+  defaultValue="npm"
+  values={[
+    {label: 'npm', value: 'npm'},
+    {label: 'Yarn', value: 'yarn'},
+    {label: 'pnpm', value: 'pnpm'},
+  ]}
+>
+<TabItem value="npm">
+
+    npm install @snout/router-path
+
+</TabItem>
+<TabItem value="yarn">
+
+    yarn add @snout/router-path
+
+</TabItem>
+<TabItem value="pnpm">
+
+    pnpm add @snout/router-path
+
+</TabItem>
+</Tabs>
+
+## Step 2: Create a path pattern {#creation}
+
+To create a path pattern, call the [`path`] function by using it in a [tagged
+template literal]:
+
+```ts no-transpile
+import {path} from '@snout/router-path'
+
+const user = path`/user/${'id'}`
+```
+
+## Step 3: Use your new path pattern {#usage}
+
+Your new path pattern can be used to check if a path matches, and determine what
+the path's arguments are:
+
+```ts no-transpile
+user.test('/user/111')  // returns true
+user.match('/user/111') // returns {id: '111'}
+```
+
+It can also be used to turn a set of arguments into a path:
+
+```ts no-transpile
+user.build({id: '111'}) // returns '/user/111'
+```
+
+You can even try it out live right now:
+
+<Sandbox inline id={GETTING_STARTED_ID} height='300px' />
+
+:::tip
+
+This embedded example doesn't have great [TypeScript] support.
+<Link to={GETTING_STARTED_URL}>Open the full sandbox</Link> for a better
+preview.
+
+:::
+
+## Step 4: Enjoy TypeScript goodness! {#type-safety}
+
+Using [TypeScript]? One of the great things about **Snout Router Path** is the
+way it infers type information for your path patterns. You can have more
+confidence when matching and building paths, because [TypeScript] will warn you
+when you're using your patterns incorrectly:
+
+```ts no-transpile
+// TypeScript "knows" that a successful match will contain an 'id':
+
+const match = user.match('/user/111')
+
+if (match) {
+  console.log(match.id)          // no error
+  console.log(match.nonexistent) // type error
+}
+
+// TypeScript "knows" that we need an 'id' when building the path:
+
+user.build({id: '111'}) // no error
+user.build({})          // type error
+```
+
+:::tip Try me!
+
+[Try this example in the TypeScript Playground](https://www.typescriptlang.org/play?#code/JYWwDg9gTgLgBAbzAQxgCwL5wGZQiOAcgAEBnAOwgFcYB6PGgUygFoV1CAoTgYwnNLwqpZnAC8cdmgAGtYc1oASBIWAATQhmndatOABUAnmEYBlHlGBh4AIgDWlAO6kbcdKjjI4pKjx6NSUmwqABs4EFQeNDhHYBCwvnIYZGByTzTVDQAubkTBcMjoiXkoADoImCiACkI5EShaAEZmwgBKbmBsOCqKqNbETjg4PIgQxlKQiABzHsLS9X6hpeXdOEo4ZjwoQeH+UlHxyZnetFLKckYAD2BBRiT+1ZhjRg2oLc4MHT0jE3NLazg9icLjcaA8jheF0YanSRHUhBiaDucAARlQ4mpUlNQS8pDlOCVSmiMVUEOoskRmo1NA89OtNtACfUieiQmpSRhFssVnoniZXlsgA)
+
+:::
+
+## That's it! {#conclusion}
+
+You're now ready to start using **Snout Router Path** in your application. Want
+to dive deeper into the features available to you? Here are some good places to
+start:
+
+- The [path patterns] guide covers creating path patterns, matching paths, and
+  building paths in greater detail.
+- Learn how to create [custom parameters] that expand on the capabilities of
+  **Snout Router Path**, while maintaining excellent [TypeScript] integration.
+- Check out [`@snout/router-path-extras`] for some commonly desired parameter
+  type implementations.
+
+<!-- References -->
+
+[`path`]: ../api/path.mdx
+[custom parameters]: custom-parameters.mdx
+[path patterns]: path-patterns.mdx
+
+[`@snout/router-path-extras`]: https://snout.dev/router-path-extras
+[tagged template literal]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Template_literals#tagged_templates
+[typescript]: https://www.typescriptlang.org/

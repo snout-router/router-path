@@ -1,0 +1,164 @@
+---
+id: Param
+title: Param
+sidebar_label: Param
+hide_title: true
+---
+
+# `Param`
+
+The `Param` interface can be used to implement [custom route parameters].
+
+## Properties {#properties}
+
+### `name` {#property-name}
+
+The name of the parameter.
+
+```ts no-transpile
+readonly name: Name
+```
+
+:::info See also
+
+- [Type-safe parameter names] in the [Custom parameters] guide
+
+:::
+
+### `exp` {#property-exp}
+
+The [regular expression] used to determine whether a segment (or segments) of a
+path match the parameter.
+
+```ts no-transpile
+readonly exp: RegExp
+```
+
+:::caution
+
+The expression **must** have exactly one [capturing group].
+
+:::
+
+:::info See also
+
+- [Matching and parsing] in the [Custom parameters] guide
+
+:::
+
+## Methods {#methods}
+
+### `format` {#method-format}
+
+Format an argument for use in a path.
+
+```ts no-transpile
+function format (arg: Arg): string
+```
+
+:::info See also
+
+- [Formatting] in the [Custom parameters] guide
+
+:::
+
+#### Parameters {#method-format-parameters}
+
+Accepts a single argument - the value to format. The value must have a type
+matching the [`Arg`] type variable.
+
+#### Return value {#method-format-return-value}
+
+A formatted string representing the supplied value.
+
+The strings produced by `format` should match [`exp`], and the resulting
+[capturing group] content should be able to be parsed by [`parse`].
+
+### `parse` {#method-parse}
+
+Parse a successful match against [`exp`].
+
+```ts no-transpile
+function parse (match: string): Arg
+```
+
+:::info See also
+
+- [Matching and parsing] in the [Custom parameters] guide
+
+:::
+
+#### Parameters {#method-parse-parameters}
+
+Accepts a single argument - the [capturing group] content of a successful match
+against [`exp`].
+
+`parse` should be capable of parsing *any* [capturing group] content that can
+occur in a successful match of [`exp`] against the strings that are produced by
+[`format`].
+
+#### Return value {#method-parse-return-value}
+
+The parsed value of the parameter. The value must have a type matching the
+[`Arg`] type variable.
+
+## Type variables {#type-variables}
+
+The `Param` type is a [generic] type:
+
+    Param<Name extends string, Arg = string>
+
+:::info See also
+
+- [Type safety] in the [Custom parameters] guide
+
+:::
+
+### `Name` {#type-variable-name}
+
+The parameter's [`name`] as a `string` [literal type].
+
+:::info See also
+
+- [Type-safe parameter names] in the [Custom parameters] guide
+
+:::
+
+### `Arg` {#type-variable-arg}
+
+The type of argument the parameter accepts.
+
+Leaving off the [`Arg`] type variable creates a `Param` where the [`Arg`] type
+is `string`, meaning that the following types are equivalent:
+
+```ts no-transpile
+import {Param} from '@snout/router-path'
+
+type ParamB = Param<'param-name'>
+type ParamA = Param<'param-name', string>
+```
+
+:::info See also
+
+- [Type safety] in the [Custom parameters] guide
+
+:::
+
+<!-- References -->
+
+[`arg`]: #type-variable-arg
+[`exp`]: #property-exp
+[`format`]: #method-format
+[`name`]: #property-name
+[`parse`]: #method-parse
+[custom parameters]: ../../guides/custom-parameters.mdx
+[custom route parameters]: ../../guides/custom-parameters.mdx
+[formatting]: ../../guides/custom-parameters.mdx#formatting
+[matching and parsing]: ../../guides/custom-parameters.mdx#matching-and-parsing
+[type safety]: ../../guides/custom-parameters.mdx#type-safety
+[type-safe parameter names]: ../../guides/custom-parameters.mdx#type-safe-parameter-names
+
+[capturing group]: https://javascript.info/regexp-groups
+[generic]: https://www.typescriptlang.org/docs/handbook/2/generics.html
+[literal type]: https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#literal-types
+[regular expression]: https://developer.mozilla.org/docs/Web/JavaScript/Guide/Regular_Expressions

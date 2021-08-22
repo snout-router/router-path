@@ -1,0 +1,57 @@
+---
+id: normalizeParam
+title: normalizeParam
+sidebar_label: normalizeParam
+hide_title: true
+---
+
+# `normalizeParam`
+
+Produces a [`Param`] implementation from a supplied string or parameter.
+
+```ts no-transpile
+function normalizeParam (p: ParamOrString): Param
+```
+
+## Parameters {#parameters}
+
+Accepts a single argument - either an existing [`Param`], or the name of a
+parameter as a string.
+
+## Return value {#return-value}
+
+A [`Param`] implementation:
+
+- If the supplied parameter is already a [`Param`] implementation, it is
+  returned as-is.
+- String values will be converted to a basic string-based parameter with the
+  supplied string becoming the [`name`] of the newly created [`Param`].
+
+## Usage {#usage}
+
+Unless you are interested in implementing [custom parameters], chances are you
+do not need to use this function at all.
+
+However, if you're implementing [custom parameters] that accept another
+parameter as input, and you want to be able to accept strings as parameters in
+the same way that [`path`] does, then `normalizeParam` is what you need. This is
+the same function used internally when creating path patterns to convert any
+parameters specified as strings into full [`Param`] implementations:
+
+```ts no-transpile
+import {path} from '@snout/router-path'
+
+const user = path`/user/${'id'}` // internally, 'id' is converted to a Param using normalizeParam
+```
+
+A real-world example that uses `normalizeParam` are the `optional` parameters
+implemented by [`@snout/router-path-extras`].
+
+<!-- References -->
+
+[`name`]: type/Param.mdx#property-name
+[`param`]: type/Param.mdx
+[`path`]: path.mdx
+[custom parameters]: ../guides/custom-parameters.mdx
+
+[`@snout/router-path-extras`]: https://snout.dev/router-path-extras
