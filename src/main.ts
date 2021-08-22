@@ -15,8 +15,8 @@ export type NormalizeParam<NameOrParam extends ParamOrString> = NameOrParam exte
   : Cast<NameOrParam, AnyParam>
 
 export interface Param<Name extends string, Arg, Result = Arg> {
-  name: Name
-  exp: RegExp
+  readonly name: Name
+  readonly exp: RegExp
   build: (arg: Arg) => string
   parse: (match: string) => Result
 }
