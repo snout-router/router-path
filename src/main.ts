@@ -21,19 +21,6 @@ export interface Param<Name extends string, Arg = string, Result = Arg> {
   parse: (match: string) => Result
 }
 
-export function param<Name extends string> (name: Name, exp: RegExp = /([^/]+)/): Param<Name> {
-  return {
-    name,
-    exp,
-    build: (arg = '') => {
-      if (arg === '' || arg == null) throw new Error(`Missing param "${name}"`)
-
-      return arg
-    },
-    parse: match => match,
-  }
-}
-
 /**
  * Extracts the arg type from a param type
  */
@@ -111,6 +98,19 @@ export function path<Params extends ParamsOrStrings> (
     }
 
     return exp
+  }
+}
+
+function param<Name extends string> (name: Name): Param<Name> {
+  return {
+    name,
+    exp: /([^/]+)/,
+    build: (arg = '') => {
+      if (arg === '' || arg == null) throw new Error(`Missing param "${name}"`)
+
+      return arg
+    },
+    parse: match => match,
   }
 }
 

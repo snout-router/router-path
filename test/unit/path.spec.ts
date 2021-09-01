@@ -1,18 +1,6 @@
-import {param, path} from '../../src/main'
+import {Param, path} from '../../src/main'
 
-describe('paths', () => {
-  describe('param()', () => {
-    it('should accept params with custom expressions', () => {
-      const subject = path`/a/${param('p1', /(xy|yz|[𝓍𝓎])/u)}`
-
-      expect(subject.match('/a/xy')).toStrictEqual({p1: 'xy'})
-      expect(subject.match('/a/yz')).toStrictEqual({p1: 'yz'})
-      expect(subject.match('/a/𝓍')).toStrictEqual({p1: '𝓍'})
-      expect(subject.match('/a/𝓎')).toStrictEqual({p1: '𝓎'})
-      expect(subject.match('/a/b')).toBeUndefined()
-    })
-  })
-
+describe('path()', () => {
   describe('path.build()', () => {
     it('should build paths with no params', () => {
       expect(path`/a/b`.build({})).toBe('/a/b')
@@ -53,11 +41,11 @@ describe('paths', () => {
     })
 
     it('should allow omission of params that accept undefined as an arg', () => {
-      const p1 = {
-        name: 'p1' as 'p1',
+      const p1: Param<'p1', string | undefined> = {
+        name: 'p1',
         exp: /([^/]+)/,
-        build: (arg: string = 'x') => arg,
-        parse: (match: string) => match === '' ? undefined : match,
+        build: (arg = 'x') => arg,
+        parse: match => match === '' ? undefined : match,
       }
       const subject = path`/a/${p1}`
 
@@ -104,17 +92,38 @@ describe('paths', () => {
     })
 
     it('should treat unmatched optional capturing groups as empty string matches', () => {
-      expect(path`/a/${'p1'}/b/${param('p2', /(y)?/)}`.match('/a/x/b/')).toStrictEqual({p1: 'x', p2: ''})
+      const p2: Param<'p2'> = {
+        name: 'p2',
+        exp: /(y)?/,
+        build: arg => arg,
+        parse: match => match,
+      }
+
+      expect(path`/a/${'p1'}/b/${p2}`.match('/a/x/b/')).toStrictEqual({p1: 'x', p2: ''})
     })
 
     it('should complain about params that do not create a capturing group', () => {
-      const subject = path`/a/${'p1'}/b/${param('p2', /y/)}`
+      const p2: Param<'p2'> = {
+        name: 'p2',
+        exp: /y/,
+        build: arg => arg,
+        parse: match => match,
+      }
+
+      const subject = path`/a/${'p1'}/b/${p2}`
 
       expect(() => { subject.match('/a/x/b/y') }).toThrow('Invalid match count')
     })
 
     it('should complain about params that create multiple capturing groups', () => {
-      const subject = path`/a/${'p1'}/b/${param('p2', /((y))/)}`
+      const p2: Param<'p2'> = {
+        name: 'p2',
+        exp: /((y))/,
+        build: arg => arg,
+        parse: match => match,
+      }
+
+      const subject = path`/a/${'p1'}/b/${p2}`
 
       expect(() => { subject.match('/a/x/b/y') }).toThrow('Invalid match count')
     })
