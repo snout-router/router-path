@@ -44,7 +44,7 @@ describe('path()', () => {
       const p1: Param<'p1', string | undefined> = {
         name: 'p1',
         exp: /([^/]+)/,
-        build: (arg = 'x') => arg,
+        format: (arg = 'x') => arg,
         parse: match => match === '' ? undefined : match,
       }
       const subject = path`/a/${p1}`
@@ -95,7 +95,7 @@ describe('path()', () => {
       const p2: Param<'p2'> = {
         name: 'p2',
         exp: /(y)?/,
-        build: arg => arg,
+        format: arg => arg,
         parse: match => match,
       }
 
@@ -106,7 +106,7 @@ describe('path()', () => {
       const p2: Param<'p2'> = {
         name: 'p2',
         exp: /y/,
-        build: arg => arg,
+        format: arg => arg,
         parse: match => match,
       }
 
@@ -119,7 +119,7 @@ describe('path()', () => {
       const p2: Param<'p2'> = {
         name: 'p2',
         exp: /((y))/,
-        build: arg => arg,
+        format: arg => arg,
         parse: match => match,
       }
 

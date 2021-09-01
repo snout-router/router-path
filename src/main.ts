@@ -17,7 +17,7 @@ export type NormalizeParam<NameOrParam extends ParamOrString> = NameOrParam exte
 export interface Param<Name extends string, Arg = string, Result = Arg> {
   readonly name: Name
   readonly exp: RegExp
-  build: (arg: Arg) => string
+  format: (arg: Arg) => string
   parse: (match: string) => Result
 }
 
@@ -55,7 +55,7 @@ export function path<Params extends ParamsOrStrings> (
       let i = 0
 
       for (const param of normalized) {
-        path += `${param.build(args[param.name])}${ends[i++]}`
+        path += `${param.format(args[param.name])}${ends[i++]}`
       }
 
       return path
@@ -105,7 +105,7 @@ function param<Name extends string> (name: Name): Param<Name> {
   return {
     name,
     exp: /([^/]+)/,
-    build: (arg = '') => {
+    format: (arg = '') => {
       if (arg === '' || arg == null) throw new Error(`Missing param "${name}"`)
 
       return arg
