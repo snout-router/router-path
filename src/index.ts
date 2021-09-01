@@ -5,5 +5,5 @@ export {
   ParamArg,
   ParamOrString,
   path,
-  Path,
+  PathPattern,
 } from './main'

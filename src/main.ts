@@ -31,7 +31,7 @@ export type ParamArg<Subject extends AnyParam> = Subject extends Param<string, i
  */
 export type ParamOrString = AnyParam | string
 
-export interface Path<Params extends AnyParams> {
+export interface PathPattern<Params extends AnyParams> {
   build: (args: Args<Params>) => string
   match: (path: string) => Result<Params> | undefined
   test: (path: string) => boolean
@@ -40,7 +40,7 @@ export interface Path<Params extends AnyParams> {
 export function path<Params extends ParamsOrStrings> (
   literals: TemplateStringsArray,
   ...params: Params
-): Path<NormalizeParams<Params>> {
+): PathPattern<NormalizeParams<Params>> {
   type NormalizedParams = NormalizeParams<Params>
   type ArgsForParams = Args<NormalizedParams>
   type ResultForParams = Result<NormalizedParams>
