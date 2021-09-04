@@ -5,8 +5,8 @@ describe('normalizeParam()', () => {
     const p1: Param<'p1'> = {
       name: 'p1',
       exp: /.*/,
-      format: arg => arg,
       parse: match => match,
+      format: arg => arg,
     }
 
     expect(normalizeParam(p1)).toBe(p1)

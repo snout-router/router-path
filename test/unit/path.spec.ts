@@ -1,59 +1,6 @@
 import {Param, path} from '../../src/main'
 
 describe('path()', () => {
-  describe('path.build()', () => {
-    it('should build paths with no params', () => {
-      expect(path`/a/b`.build({})).toBe('/a/b')
-    })
-
-    it('should build paths with a single param', () => {
-      const subject = path`/a/${'p1'}/b`
-
-      expect(subject.build({p1: 'x', ignored: 'ignored'})).toBe('/a/x/b')
-      expect(subject.build({p1: 'y', ignored: 'ignored'})).toBe('/a/y/b')
-    })
-
-    it('should build paths with multiple params', () => {
-      const subject = path`/a/${'p1'}/b/${'p2'}/c`
-
-      expect(subject.build({p1: 'x', p2: 'y', ignored: 'ignored'})).toBe('/a/x/b/y/c')
-      expect(subject.build({p1: 'y', p2: 'z', ignored: 'ignored'})).toBe('/a/y/b/z/c')
-    })
-
-    it('should build paths with hyphens', () => {
-      expect(path`/a/${'p-1'}-${'p-2'}`.build({'p-1': 'x', 'p-2': 'y'})).toBe('/a/x-y')
-      expect(path`/a/${'p-1'}-${'p-2'}`.build({'p-1': 'w-x', 'p-2': 'y-z'})).toBe('/a/w-x-y-z')
-    })
-
-    it('should build paths with periods', () => {
-      expect(path`/a/${'p.1'}.${'p.2'}`.build({'p.1': 'x', 'p.2': 'y'})).toBe('/a/x.y')
-      expect(path`/a/${'p.1'}.${'p.2'}`.build({'p.1': 'w.x', 'p.2': 'y.z'})).toBe('/a/w.x.y.z')
-    })
-
-    it('should complain about missing params', () => {
-      expect(() => path`/a/${'p1'}/b/${'p2'}`.build({p1: 'a', p2: ''})).toThrow('Missing param "p2"')
-      // @ts-expect-error
-      expect(() => path`/a/${'p1'}/b/${'p2'}`.build({p1: 'a', p2: null})).toThrow('Missing param "p2"')
-      // @ts-expect-error
-      expect(() => path`/a/${'p1'}/b/${'p2'}`.build({p1: 'a', p2: undefined})).toThrow('Missing param "p2"')
-      // @ts-expect-error
-      expect(() => path`/a/${'p1'}/b/${'p2'}`.build({p1: 'a'})).toThrow('Missing param "p2"')
-    })
-
-    it('should allow omission of params that accept undefined as an arg', () => {
-      const p1: Param<'p1', string | undefined> = {
-        name: 'p1',
-        exp: /([^/]+)/,
-        format: (arg = 'x') => arg,
-        parse: match => match === '' ? undefined : match,
-      }
-      const subject = path`/a/${p1}`
-
-      expect(subject.build({})).toBe('/a/x')
-      expect(subject.build({p1: 'y'})).toBe('/a/y')
-    })
-  })
-
   describe('path.match()', () => {
     it('should return params for matching paths with single params', () => {
       const subject = path`/a/${'p1'}/b`
@@ -95,8 +42,8 @@ describe('path()', () => {
       const p2: Param<'p2'> = {
         name: 'p2',
         exp: /(y)?/,
-        format: arg => arg,
         parse: match => match,
+        format: arg => arg,
       }
 
       expect(path`/a/${'p1'}/b/${p2}`.match('/a/x/b/')).toStrictEqual({p1: 'x', p2: ''})
@@ -106,8 +53,8 @@ describe('path()', () => {
       const p2: Param<'p2'> = {
         name: 'p2',
         exp: /y/,
-        format: arg => arg,
         parse: match => match,
+        format: arg => arg,
       }
 
       const subject = path`/a/${'p1'}/b/${p2}`
@@ -119,8 +66,8 @@ describe('path()', () => {
       const p2: Param<'p2'> = {
         name: 'p2',
         exp: /((y))/,
-        format: arg => arg,
         parse: match => match,
+        format: arg => arg,
       }
 
       const subject = path`/a/${'p1'}/b/${p2}`
@@ -168,6 +115,58 @@ describe('path()', () => {
 
     it('should not match multiple path segments as one param', () => {
       expect(path`/a/${'p1'}/b`.test('/a/x/y/b')).toBe(false)
+    })
+  })
+  describe('path.build()', () => {
+    it('should build paths with no params', () => {
+      expect(path`/a/b`.build({})).toBe('/a/b')
+    })
+
+    it('should build paths with a single param', () => {
+      const subject = path`/a/${'p1'}/b`
+
+      expect(subject.build({p1: 'x', ignored: 'ignored'})).toBe('/a/x/b')
+      expect(subject.build({p1: 'y', ignored: 'ignored'})).toBe('/a/y/b')
+    })
+
+    it('should build paths with multiple params', () => {
+      const subject = path`/a/${'p1'}/b/${'p2'}/c`
+
+      expect(subject.build({p1: 'x', p2: 'y', ignored: 'ignored'})).toBe('/a/x/b/y/c')
+      expect(subject.build({p1: 'y', p2: 'z', ignored: 'ignored'})).toBe('/a/y/b/z/c')
+    })
+
+    it('should build paths with hyphens', () => {
+      expect(path`/a/${'p-1'}-${'p-2'}`.build({'p-1': 'x', 'p-2': 'y'})).toBe('/a/x-y')
+      expect(path`/a/${'p-1'}-${'p-2'}`.build({'p-1': 'w-x', 'p-2': 'y-z'})).toBe('/a/w-x-y-z')
+    })
+
+    it('should build paths with periods', () => {
+      expect(path`/a/${'p.1'}.${'p.2'}`.build({'p.1': 'x', 'p.2': 'y'})).toBe('/a/x.y')
+      expect(path`/a/${'p.1'}.${'p.2'}`.build({'p.1': 'w.x', 'p.2': 'y.z'})).toBe('/a/w.x.y.z')
+    })
+
+    it('should complain about missing params', () => {
+      expect(() => path`/a/${'p1'}/b/${'p2'}`.build({p1: 'a', p2: ''})).toThrow('Missing param "p2"')
+      // @ts-expect-error
+      expect(() => path`/a/${'p1'}/b/${'p2'}`.build({p1: 'a', p2: null})).toThrow('Missing param "p2"')
+      // @ts-expect-error
+      expect(() => path`/a/${'p1'}/b/${'p2'}`.build({p1: 'a', p2: undefined})).toThrow('Missing param "p2"')
+      // @ts-expect-error
+      expect(() => path`/a/${'p1'}/b/${'p2'}`.build({p1: 'a'})).toThrow('Missing param "p2"')
+    })
+
+    it('should allow omission of params that accept undefined as an arg', () => {
+      const p1: Param<'p1', string | undefined> = {
+        name: 'p1',
+        exp: /([^/]+)/,
+        parse: match => match === '' ? undefined : match,
+        format: (arg = 'x') => arg,
+      }
+      const subject = path`/a/${p1}`
+
+      expect(subject.build({})).toBe('/a/x')
+      expect(subject.build({p1: 'y'})).toBe('/a/y')
     })
   })
 })

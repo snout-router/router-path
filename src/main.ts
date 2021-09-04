@@ -10,12 +10,12 @@ export function normalizeParam<P extends ParamOrString> (p: P): NormalizeParam<P
     return {
       name: p,
       exp: /([^/]+)/,
+      parse: match => match,
       format: (arg = '') => {
         if (arg === '' || arg == null) throw new Error(`Missing param "${p}"`)
 
         return arg
       },
-      parse: match => match,
     } as NormalizeParam<P>
   }
 
@@ -35,8 +35,8 @@ export type NormalizeParam<NameOrParam extends ParamOrString> = NameOrParam exte
 export interface Param<Name extends string, Arg = string> {
   readonly name: Name
   readonly exp: RegExp
-  format: (arg: Arg) => string
   parse: (match: string) => Arg
+  format: (arg: Arg) => string
 }
 
 /**
@@ -50,9 +50,9 @@ export type ParamArg<Subject extends AnyParam> = Subject extends Param<string, i
 export type ParamOrString = AnyParam | string
 
 export interface PathPattern<Params extends AnyParams> {
-  build: (args: Args<Params>) => string
   match: (path: string) => Result<Params> | undefined
   test: (path: string) => boolean
+  build: (args: Args<Params>) => string
 }
 
 export function path<Params extends ParamsOrStrings> (
@@ -68,17 +68,6 @@ export function path<Params extends ParamsOrStrings> (
   let exp: RegExp | undefined
 
   return {
-    build (args: ArgsForParams): string {
-      let path = start
-      let i = 0
-
-      for (const param of normalized) {
-        path += `${param.format(args[param.name])}${ends[i++]}`
-      }
-
-      return path
-    },
-
     match (path: string): ResultForParams | undefined {
       const result = buildExp().exec(path)
 
@@ -100,6 +89,17 @@ export function path<Params extends ParamsOrStrings> (
 
     test (path: string): boolean {
       return buildExp().test(path)
+    },
+
+    build (args: ArgsForParams): string {
+      let path = start
+      let i = 0
+
+      for (const param of normalized) {
+        path += `${param.format(args[param.name])}${ends[i++]}`
+      }
+
+      return path
     },
   }
 
