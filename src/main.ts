@@ -4,6 +4,24 @@ import {AllowOmitUndefined, Cast} from './types'
 
 export type AnyParam = Param<string, any>
 
+export function normalizeParam<P extends ParamOrString> (p: P): NormalizeParam<P> {
+  if (typeof p === 'string') {
+    // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
+    return {
+      name: p,
+      exp: /([^/]+)/,
+      format: (arg = '') => {
+        if (arg === '' || arg == null) throw new Error(`Missing param "${p}"`)
+
+        return arg
+      },
+      parse: match => match,
+    } as NormalizeParam<P>
+  }
+
+  return p as NormalizeParam<P>
+}
+
 /**
  * Normalizes the type of params specified as strings into Param types
  *
@@ -46,7 +64,7 @@ export function path<Params extends ParamsOrStrings> (
   type ResultForParams = Result<NormalizedParams>
 
   const [start, ...ends] = literals
-  const normalized = params.map(p => typeof p === 'string' ? param(p) : p) as NormalizedParams
+  const normalized = params.map(normalizeParam) as NormalizedParams
   let exp: RegExp | undefined
 
   return {
@@ -98,19 +116,6 @@ export function path<Params extends ParamsOrStrings> (
     }
 
     return exp
-  }
-}
-
-function param<Name extends string> (name: Name): Param<Name> {
-  return {
-    name,
-    exp: /([^/]+)/,
-    format: (arg = '') => {
-      if (arg === '' || arg == null) throw new Error(`Missing param "${name}"`)
-
-      return arg
-    },
-    parse: match => match,
   }
 }
 
