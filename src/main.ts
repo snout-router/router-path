@@ -14,17 +14,17 @@ export type NormalizeParam<NameOrParam extends ParamOrString> = NameOrParam exte
   ? Param<NameOrParam>
   : Cast<NameOrParam, AnyParam>
 
-export interface Param<Name extends string, Arg = string, Result = Arg> {
+export interface Param<Name extends string, Arg = string> {
   readonly name: Name
   readonly exp: RegExp
   format: (arg: Arg) => string
-  parse: (match: string) => Result
+  parse: (match: string) => Arg
 }
 
 /**
  * Extracts the arg type from a param type
  */
-export type ParamArg<Subject extends AnyParam> = Subject extends Param<string, infer Arg, any> ? Arg : never
+export type ParamArg<Subject extends AnyParam> = Subject extends Param<string, infer Arg> ? Arg : never
 
 /**
  * A Param type, or a string type to be normalized into a Param type via NormalizeParam
@@ -121,20 +121,13 @@ type ParamsOrStrings = ParamOrString[]
  * Constructs the type for the result of a successful match against a path with the supplied param types
  */
 type Result<Params extends AnyParams> = Params extends Array<Param<infer Name, any>>
-  ? { [Key in Name]: ParamResult<Extract<Params[number], Param<Key, any>>> }
+  ? { [Key in Name]: ParamArg<Extract<Params[number], Param<Key, any>>> }
   : { [Key in string]: any }
-
-/**
- * Extracts the result type from a param type
- */
-type ParamResult<Subject extends AnyParam> = Subject extends Param<string, any, infer Result> ? Result : never
 
 /**
  * Constructs the type for acceptable input when building a path with the supplied param types
  */
-type Args<Params extends AnyParams> = Params extends Array<Param<infer Name, any>>
-  ? AllowOmitUndefined<{ [Key in Name]: ParamArg<Extract<Params[number], Param<Key, any>>> }> & { [Key in string]: any }
-  : { [Key in string]: any }
+type Args<Params extends AnyParams> = AllowOmitUndefined<Result<Params>> & { [Key in string]: any }
 
 /**
  * Normalizes an indexed access type (i.e. an array type) of param types, using NormalizeParam
