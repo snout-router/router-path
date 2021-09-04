@@ -22,9 +22,7 @@ export function normalizeParam<P extends ParamOrString> (p: P): NormalizeParam<P
   return p as NormalizeParam<P>
 }
 
-export type NormalizeParam<NameOrParam extends ParamOrString> = NameOrParam extends string
-  ? Param<NameOrParam>
-  : Cast<NameOrParam, AnyParam>
+export type NormalizeParam<P extends ParamOrString> = P extends string ? Param<P> : Cast<P, AnyParam>
 
 export interface Param<Name extends string, Arg = string> {
   readonly name: Name
