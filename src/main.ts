@@ -32,6 +32,7 @@ export interface Param<Name extends string, Arg = string> {
 }
 
 export type ParamArg<Subject extends AnyParam> = Subject extends Param<string, infer Arg> ? Arg : never
+export type ParamName<Subject extends AnyParam> = Subject extends Param<infer Name, any> ? Name : never
 export type ParamOrString = AnyParam | string
 
 export interface PathPattern<Params extends AnyParams> {
