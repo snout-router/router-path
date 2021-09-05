@@ -4,6 +4,7 @@ export {
   NormalizeParam,
   Param,
   ParamArg,
+  ParamName,
   ParamOrString,
   path,
   PathPattern,
