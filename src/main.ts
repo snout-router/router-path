@@ -11,8 +11,8 @@ export function normalizeParam<P extends ParamOrString> (p: P): NormalizeParam<P
       name: p,
       exp: /([^/]+)/,
       parse: match => match,
-      format: (arg = '') => {
-        if (arg === '' || arg == null) throw new Error(`Missing param "${p}"`)
+      format: (arg: string) => {
+        if (arg === '') throw new Error(`Empty parameter "${p}"`)
 
         return arg
       },

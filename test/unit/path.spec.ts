@@ -117,6 +117,7 @@ describe('path()', () => {
       expect(path`/a/${'p1'}/b`.test('/a/x/y/b')).toBe(false)
     })
   })
+
   describe('path.build()', () => {
     it('should build paths with no params', () => {
       expect(path`/a/b`.build({})).toBe('/a/b')
@@ -146,14 +147,8 @@ describe('path()', () => {
       expect(path`/a/${'p.1'}.${'p.2'}`.build({'p.1': 'w.x', 'p.2': 'y.z'})).toBe('/a/w.x.y.z')
     })
 
-    it('should complain about missing params', () => {
-      expect(() => path`/a/${'p1'}/b/${'p2'}`.build({p1: 'a', p2: ''})).toThrow('Missing param "p2"')
-      // @ts-expect-error
-      expect(() => path`/a/${'p1'}/b/${'p2'}`.build({p1: 'a', p2: null})).toThrow('Missing param "p2"')
-      // @ts-expect-error
-      expect(() => path`/a/${'p1'}/b/${'p2'}`.build({p1: 'a', p2: undefined})).toThrow('Missing param "p2"')
-      // @ts-expect-error
-      expect(() => path`/a/${'p1'}/b/${'p2'}`.build({p1: 'a'})).toThrow('Missing param "p2"')
+    it('should complain about empty params', () => {
+      expect(() => path`/a/${'p1'}/b/${'p2'}`.build({p1: 'a', p2: ''})).toThrow('Empty parameter "p2"')
     })
 
     it('should allow omission of params that accept undefined as an arg', () => {

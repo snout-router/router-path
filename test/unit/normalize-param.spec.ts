@@ -18,12 +18,6 @@ describe('normalizeParam()', () => {
     expect(actual).toMatchObject({name: 'p1', exp: /([^/]+)/})
     expect(actual.parse('x')).toBe('x')
     expect(actual.format('x')).toBe('x')
-    expect(() => actual.format('')).toThrow('Missing param "p1"')
-    // @ts-expect-error
-    expect(() => actual.format(null)).toThrow('Missing param "p1"')
-    // @ts-expect-error
-    expect(() => actual.format(undefined)).toThrow('Missing param "p1"')
-    // @ts-expect-error
-    expect(() => actual.format()).toThrow('Missing param "p1"')
+    expect(() => actual.format('')).toThrow('Empty parameter "p1"')
   })
 })
