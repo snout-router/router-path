@@ -27,8 +27,8 @@ export type NormalizeParam<P extends ParamOrString> = P extends string ? Param<P
 export interface Param<Name extends string, Arg = string> {
   readonly name: Name
   readonly exp: RegExp
-  parse: (match: string) => Arg
-  format: (arg: Arg) => string
+  readonly parse: (match: string) => Arg
+  readonly format: (arg: Arg) => string
 }
 
 export type ParamArg<Subject extends AnyParam> = Subject extends Param<string, infer Arg> ? Arg : never
@@ -36,9 +36,9 @@ export type ParamName<Subject extends AnyParam> = Subject extends Param<infer Na
 export type ParamOrString = AnyParam | string
 
 export interface PathPattern<Params extends AnyParams> {
-  match: (path: string) => Result<Params> | undefined
-  test: (path: string) => boolean
-  build: (args: Args<Params>) => string
+  readonly match: (path: string) => Result<Params> | undefined
+  readonly test: (path: string) => boolean
+  readonly build: (args: Args<Params>) => string
 }
 
 export function path<Params extends ParamsOrStrings> (
