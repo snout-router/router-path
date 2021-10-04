@@ -1,5 +1,4 @@
 import {ParamOrString, Param} from '../../../src/main'
-
 import {hasType} from '../../helpers'
 
 describe('ParamOrString', () => {

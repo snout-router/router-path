@@ -1,5 +1,4 @@
 import {AnyParam, Param} from '../../../src/main'
-
 import {hasType} from '../../helpers'
 
 describe('AnyParam', () => {

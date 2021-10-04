@@ -1,5 +1,4 @@
 import {NormalizeParam, Param} from '../../../src/main'
-
 import {hasType} from '../../helpers'
 
 describe('NormalizeParam', () => {

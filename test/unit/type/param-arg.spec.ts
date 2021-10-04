@@ -1,5 +1,4 @@
 import {Param, ParamArg} from '../../../src/main'
-
 import {hasType} from '../../helpers'
 
 describe('ParamArg', () => {
