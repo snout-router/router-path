@@ -2,6 +2,12 @@
   "name": "@snout/router-path",
   "version": "0.0.0",
   "description": "A simple, light-weight, type-safe router path implementation",
+  "keywords": [
+    "path",
+    "route",
+    "router",
+    "routing"
+  ],
   "repository": "snout-router/router-path",
   "bugs": "https://github.com/snout-router/router-path/issues",
   "homepage": "https://snout.dev/router-path",
@@ -13,6 +19,10 @@
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "typings": "dist/index.d.ts",
+  "exports": {
+    "import": "./dist/index.es.js",
+    "require": "./dist/index.js"
+  },
   "sideEffects": false,
   "files": [
     "/dist/"
