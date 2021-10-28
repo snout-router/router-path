@@ -1,7 +1,4 @@
-JS_SOURCE_FILES += $(shell find src -type f -iname "*.ts" 2> /dev/null)
-_JS_TEST_ASSETS := $(shell find test -type f -not -iname "*.ts" 2> /dev/null)
-
-JS_SIZE_LIMIT_REQ += dist
+JS_SIZE_LIMIT_REQ += artifacts/dist
 
 ################################################################################
 
@@ -20,7 +17,7 @@ website-%:
 
 ################################################################################
 
-dist: rollup.config.js tsconfig.json node_modules $(JS_SOURCE_FILES)
+artifacts/dist: rollup.config.js tsconfig.json node_modules $(JS_SOURCE_FILES)
 	node_modules/.bin/rollup --config rollup.config.js
 
 	@touch "$@"

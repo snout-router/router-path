@@ -1,7 +1,3 @@
-SOURCE_FILES += $(shell find src -type f 2> /dev/null)
-
-################################################################################
-
 -include .makefiles/Makefile
 -include .makefiles/pkg/js/v1/Makefile
 -include .makefiles/pkg/js/v1/with-yarn.mk
@@ -26,7 +22,7 @@ ci:: artifacts/docusaurus/build
 
 ################################################################################
 
-artifacts/docusaurus/build: node_modules $(SOURCE_FILES) $(JS_SOURCE_FILES)
+artifacts/docusaurus/build: node_modules $(wildcard *.js) $(shell PATH="$(PATH)" git-find static) $(JS_SOURCE_FILES)
 	@rm -rf "$@"
 	@mkdir -p "$@"
 
