@@ -16,12 +16,11 @@
   "publishConfig": {
     "access": "public"
   },
+  "type": "module",
   "main": "artifacts/dist/index.js",
-  "module": "artifacts/dist/index.es.js",
   "typings": "artifacts/dist/index.d.ts",
   "exports": {
-    "import": "./artifacts/dist/index.es.js",
-    "require": "./artifacts/dist/index.js"
+    ".": "./artifacts/dist/index.js"
   },
   "sideEffects": false,
   "files": [
@@ -31,18 +30,17 @@
     "node": ">=14"
   },
   "scripts": {
-    "prepublishOnly": "rollup --config rollup.config.js",
-    "size-limit-build": "rollup --config rollup.config.js",
+    "prepublishOnly": "tsc -p tsconfig.build.json",
+    "size-limit-build": "tsc -p tsconfig.build.json",
     "size-limit-clean": "rm -rf artifacts/dist"
   },
   "dependencies": {
-    "@snout/regexp": "^0.2.1"
+    "@snout/regexp": "^0.3.0"
   },
   "devDependencies": {
     "@size-limit/preset-small-lib": "^5.0.3",
     "@snout/eslint-config": "^2.0.0",
-    "@snout/jest-config": "^1.0.2",
-    "@snout/rollup-config": "^1.1.2",
+    "@snout/jest-config": "^2.1.0",
     "@snout/tsconfig": "^1.0.3",
     "@typescript-eslint/eslint-plugin": "^4.18.0",
     "@typescript-eslint/parser": "^4.18.0",

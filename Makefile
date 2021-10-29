@@ -17,7 +17,7 @@ website-%:
 
 ################################################################################
 
-artifacts/dist: rollup.config.js tsconfig.json node_modules $(JS_SOURCE_FILES)
-	node_modules/.bin/rollup --config rollup.config.js
-
+artifacts/dist: tsconfig.build.json node_modules $(JS_SOURCE_FILES)
+	@rm -rf "$@"
+	node_modules/.bin/tsc -p "$<"
 	@touch "$@"
