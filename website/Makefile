@@ -22,7 +22,7 @@ ci:: artifacts/docusaurus/build
 
 ################################################################################
 
-artifacts/docusaurus/build: node_modules $(wildcard *.js) $(shell PATH="$(PATH)" git-find static) $(JS_SOURCE_FILES)
+artifacts/docusaurus/build: node_modules $(wildcard *.js) $(JS_SOURCE_FILES) $(shell find static -type f)
 	@rm -rf "$@"
 	@mkdir -p "$@"
 
