@@ -4,24 +4,4 @@ on:
   pull_request:
 jobs:
   ci:
-    name: CI
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '14'
-    - name: Install dependencies
-      run: make node_modules
-    - name: Make
-      run: make ci
-    - name: Publish coverage
-      uses: codecov/codecov-action@v2
-    - name: Publish dist artifact
-      if: github.ref == 'refs/heads/main'
-      uses: actions/upload-artifact@v2
-      with:
-        name: dist
-        path: artifacts/dist
+    uses: snout-router/.github/.github/workflows/ci.yml@main

@@ -8,23 +8,4 @@ on:
     - 'website/**'
 jobs:
   publish:
-    runs-on: ubuntu-latest
-    name: Publish website
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '14'
-    - name: Install dependencies
-      working-directory: website
-      run: make node_modules
-    - name: Build website
-      working-directory: website
-      run: make release
-    - name: Publish website
-      uses: JamesIves/github-pages-deploy-action@4.1.7
-      with:
-        branch: gh-pages
-        folder: website/artifacts/docusaurus/build
+    uses: snout-router/.github/.github/workflows/publish-website.yml@main
