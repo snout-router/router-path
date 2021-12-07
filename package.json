@@ -42,7 +42,7 @@
     "@snout/eslint-config": "^2.0.0",
     "@snout/jest-config": "^2.1.0",
     "@snout/tsconfig": "^2.0.0",
-    "@typescript-eslint/eslint-plugin": "^4.18.0",
+    "@typescript-eslint/eslint-plugin": "^5.6.0",
     "@typescript-eslint/parser": "^4.18.0",
     "codecov": "^3.0.2",
     "eslint": "^7.21.0",
