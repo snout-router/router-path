@@ -1,5 +1,5 @@
 import {useTitleFormatter} from '@docusaurus/theme-common'
-import InitialSeo from '@theme-init/Seo'
+import OriginalSeo from '@theme-original/Seo'
 import React from 'react'
 
 export default function Seo (props) {
@@ -7,7 +7,7 @@ export default function Seo (props) {
   const {description, title} = rest
   const pageTitle = useTitleFormatter(title)
 
-  return <InitialSeo {...rest}>
+  return <OriginalSeo {...rest}>
     <meta property='og:type' content='website' />
     <meta property='og:site_name' content='Snout Router' />
 
@@ -34,5 +34,5 @@ export default function Seo (props) {
     <link rel='mask-icon' href='https://snout.dev/safari-mask-icon.svg' color='hsl(350, 100%, 85%)' />
 
     {children}
-  </InitialSeo>
+  </OriginalSeo>
 }

@@ -16,7 +16,7 @@ module.exports = createConfig({
       position: 'right',
     },
     {
-      to: 'guides/index',
+      to: 'guides',
       label: 'Guides',
       position: 'right',
     },
@@ -32,7 +32,7 @@ module.exports = createConfig({
       items: [
         {
           label: 'Guides',
-          to: 'guides/index',
+          to: 'guides',
         },
         {
           label: 'API reference',
