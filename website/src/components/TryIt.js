@@ -1,9 +1,9 @@
 import Link from '@docusaurus/Link'
+import Sandbox from '@theme/Sandbox'
 import clsx from 'clsx'
 import React from 'react'
 
 import {GETTING_STARTED_ID, GETTING_STARTED_URL} from '../sandbox.js'
-import Sandbox from './Sandbox.js'
 import styles from './TryIt.module.css'
 
 export default function TryIt () {
