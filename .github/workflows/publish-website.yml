@@ -8,4 +8,5 @@ on:
     - 'website/**'
 jobs:
   publish:
+    name: Snout
     uses: snout-router/.github/.github/workflows/publish-website.yml@main
