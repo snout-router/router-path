@@ -5,6 +5,7 @@ on:
     - '[0-9]+.[0-9]+.[0-9]+'
 jobs:
   publish:
+    name: Snout
     uses: snout-router/.github/.github/workflows/publish-package.yml@main
     secrets:
       NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
