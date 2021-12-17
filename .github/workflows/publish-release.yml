@@ -5,4 +5,5 @@ on:
     - '*'
 jobs:
   publish:
+    name: Snout
     uses: snout-router/.github/.github/workflows/publish-release.yml@main
