@@ -15,15 +15,15 @@ export DOCUSAURUS_GENERATED_FILES_DIR_NAME := artifacts/docusaurus/generated
 release: artifacts/docusaurus/build
 
 .PHONY: run
-run: node_modules
-	node_modules/.bin/docusaurus start --no-open
+run: artifacts/link-dependencies.touch
+	$(JS_EXEC) docusaurus start --no-open
 
 ci:: artifacts/docusaurus/build
 
 ################################################################################
 
-artifacts/docusaurus/build: node_modules $(wildcard *.js) $(JS_SOURCE_FILES) $(shell find static -type f)
+artifacts/docusaurus/build: artifacts/link-dependencies.touch $(wildcard *.js) $(JS_SOURCE_FILES) $(shell find static -type f)
 	@rm -rf "$@"
 	@mkdir -p "$@"
 
-	node_modules/.bin/docusaurus build --out-dir "$@"
+	$(JS_EXEC) docusaurus build --out-dir "$@"

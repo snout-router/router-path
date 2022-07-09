@@ -17,7 +17,7 @@ website-%:
 
 ################################################################################
 
-artifacts/dist: tsconfig.build.json node_modules $(JS_SOURCE_FILES)
+artifacts/dist: tsconfig.build.json artifacts/link-dependencies.touch $(JS_SOURCE_FILES)
 	@rm -rf "$@"
-	node_modules/.bin/tsc -p "$<"
+	$(JS_EXEC) tsc -p "$<"
 	@touch "$@"
