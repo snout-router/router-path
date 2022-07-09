@@ -9,7 +9,10 @@ import Sandbox from '@theme/Sandbox'
 import Tabs from '@theme/Tabs'
 import TabItem from '@theme/TabItem'
 
-import {GETTING_STARTED_ID, GETTING_STARTED_URL} from '../../website/src/sandbox.js'
+import {
+  GETTING_STARTED_ID,
+  GETTING_STARTED_URL,
+} from '../../website/src/sandbox'
 
 Welcome to **Snout Router Path**! 🐽
 
@@ -65,7 +68,7 @@ Your new path pattern can be used to check if a path matches, and determine what
 the path's arguments are:
 
 ```ts no-transpile
-user.test('/user/111')  // returns true
+user.test('/user/111') // returns true
 user.match('/user/111') // returns {id: '111'}
 ```
 
@@ -77,13 +80,13 @@ user.build({id: '111'}) // returns '/user/111'
 
 You can even try it out live right now:
 
-<Sandbox inline id={GETTING_STARTED_ID} height='300px' />
+<Sandbox inline id={GETTING_STARTED_ID} height="300px" />
 
 :::tip
 
 This embedded example doesn't have great [TypeScript] support.
-<Link to={GETTING_STARTED_URL}>Open the full sandbox</Link> for a better
-preview.
+
+<Link to={GETTING_STARTED_URL}>Open the full sandbox</Link> for a better preview.
 
 :::
 
@@ -100,14 +103,14 @@ when you're using your patterns incorrectly:
 const match = user.match('/user/111')
 
 if (match) {
-  console.log(match.id)          // no error
+  console.log(match.id) // no error
   console.log(match.nonexistent) // type error
 }
 
 // TypeScript "knows" that we need an 'id' when building the path:
 
 user.build({id: '111'}) // no error
-user.build({})          // type error
+user.build({}) // type error
 ```
 
 :::tip Try me!
@@ -134,7 +137,6 @@ start:
 [`path`]: ../api/path.mdx
 [custom parameters]: custom-parameters.mdx
 [path patterns]: path-patterns.mdx
-
 [`@snout/router-path-extras`]: https://snout.dev/router-path-extras
 [tagged template literal]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Template_literals#tagged_templates
 [typescript]: https://www.typescriptlang.org/
