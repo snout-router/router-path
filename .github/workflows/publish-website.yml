@@ -1,11 +1,12 @@
+# DO NOT EDIT - This file is managed by snout-router/repos.
 name: Publish website
 on:
   push:
     branches:
-    - main
+      - main
     paths:
-    - 'docs/**'
-    - 'website/**'
+      - "docs/**"
+      - "website/**"
 jobs:
   publish:
     name: Snout
