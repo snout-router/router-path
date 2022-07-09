@@ -1,17 +1,17 @@
-import {path} from '../../../src/main'
+import { path } from "../../../src/main";
 
-describe('PathPattern', () => {
-  it('should not allow any properties to be modified', () => {
-    const a = path`/a`
-    const match = (x: string): undefined => undefined
-    const test = (x: string): false => false
-    const build = (x: {}): string => ''
+describe("PathPattern", () => {
+  it("should not allow any properties to be modified", () => {
+    const a = path`/a`;
+    const match = (_: string): undefined => undefined;
+    const test = (_: string): false => false;
+    const build = (_: Record<string, unknown>): string => "";
 
-    // @ts-expect-error
-    expect(a.match = match).toBe(match)
-    // @ts-expect-error
-    expect(a.test = test).toBe(test)
-    // @ts-expect-error
-    expect(a.build = build).toBe(build)
-  })
-})
+    // @ts-expect-error should not be able to modify match
+    expect((a.match = match)).toBe(match);
+    // @ts-expect-error should not be able to modify test
+    expect((a.test = test)).toBe(test);
+    // @ts-expect-error should not be able to modify build
+    expect((a.build = build)).toBe(build);
+  });
+});

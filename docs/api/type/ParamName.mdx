@@ -15,10 +15,10 @@ mostly as a counterpart to [`ParamArg`], although unfortunately there are no
 real-world examples of it in use at the time of writing.
 
 ```ts no-transpile
-import {Param, ParamName} from '@snout/router-path'
+import { Param, ParamName } from "@snout/router-path";
 
-type ParamA = Param<'a'>      // a parameter named 'a'
-type Name = ParamName<ParamA> // the extracted Name type is 'a'
+type ParamA = Param<"a">; // a parameter named 'a'
+type Name = ParamName<ParamA>; // the extracted Name type is 'a'
 ```
 
 :::tip Try me!

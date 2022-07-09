@@ -13,7 +13,7 @@ Create a route path pattern.
 
 `path` is not called with traditional parameters, but with [tagged template
 literals]. The "substitutions" in the literal can be either [`Param`] objects,
-or strings,  which get automatically converted into parameters via
+or strings, which get automatically converted into parameters via
 [`normalizeParam`].
 
 ## Return value {#return-value}
@@ -23,12 +23,12 @@ A [`PathPattern`] object.
 ## Usage {#usage}
 
 ```ts no-transpile
-import {path} from '@snout/router-path'
+import { path } from "@snout/router-path";
 
-const user = path`/user/${'id'}`
+const user = path`/user/${"id"}`;
 
-user.match('/user/111') // returns {id: '111'}
-user.build({id: '111'}) // returns '/user/111'
+user.match("/user/111"); // returns {id: '111'}
+user.build({ id: "111" }); // returns '/user/111'
 ```
 
 <!-- References -->
@@ -36,5 +36,4 @@ user.build({id: '111'}) // returns '/user/111'
 [`normalizeparam`]: normalizeParam.mdx
 [`param`]: type/Param.mdx
 [`pathpattern`]: type/PathPattern.mdx
-
 [tagged template literals]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Template_literals#tagged_templates

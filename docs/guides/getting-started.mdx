@@ -4,15 +4,14 @@ title: Getting started
 sidebar_label: Getting started
 ---
 
-import Link from '@docusaurus/Link'
-import Sandbox from '@theme/Sandbox'
-import Tabs from '@theme/Tabs'
-import TabItem from '@theme/TabItem'
-
+import Link from "@docusaurus/Link";
+import Sandbox from "@theme/Sandbox";
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
 import {
   GETTING_STARTED_ID,
   GETTING_STARTED_URL,
-} from '../../website/src/sandbox'
+} from "../../website/src/sandbox";
 
 Welcome to **Snout Router Path**! 🐽
 
@@ -57,9 +56,9 @@ To create a path pattern, call the [`path`] function by using it in a [tagged
 template literal]:
 
 ```ts no-transpile
-import {path} from '@snout/router-path'
+import { path } from "@snout/router-path";
 
-const user = path`/user/${'id'}`
+const user = path`/user/${"id"}`;
 ```
 
 ## Step 3: Use your new path pattern {#usage}
@@ -68,14 +67,14 @@ Your new path pattern can be used to check if a path matches, and determine what
 the path's arguments are:
 
 ```ts no-transpile
-user.test('/user/111') // returns true
-user.match('/user/111') // returns {id: '111'}
+user.test("/user/111"); // returns true
+user.match("/user/111"); // returns {id: '111'}
 ```
 
 It can also be used to turn a set of arguments into a path:
 
 ```ts no-transpile
-user.build({id: '111'}) // returns '/user/111'
+user.build({ id: "111" }); // returns '/user/111'
 ```
 
 You can even try it out live right now:
@@ -100,17 +99,17 @@ when you're using your patterns incorrectly:
 ```ts no-transpile
 // TypeScript "knows" that a successful match will contain an 'id':
 
-const match = user.match('/user/111')
+const match = user.match("/user/111");
 
 if (match) {
-  console.log(match.id) // no error
-  console.log(match.nonexistent) // type error
+  console.log(match.id); // no error
+  console.log(match.nonexistent); // type error
 }
 
 // TypeScript "knows" that we need an 'id' when building the path:
 
-user.build({id: '111'}) // no error
-user.build({}) // type error
+user.build({ id: "111" }); // no error
+user.build({}); // type error
 ```
 
 :::tip Try me!

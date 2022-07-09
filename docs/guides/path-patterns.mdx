@@ -4,7 +4,7 @@ title: Path patterns
 sidebar_label: Path patterns
 ---
 
-A *path pattern* is a way to express the structure that a *path* must take in
+A _path pattern_ is a way to express the structure that a _path_ must take in
 order to identify a particular resource, endpoint, or portion of your
 application. Path patterns are what **Snout Router Path** is all about!
 
@@ -24,21 +24,21 @@ To create a path pattern, call the [`path`] function by using it in a [tagged
 template literal]:
 
 ```ts no-transpile
-import {path} from '@snout/router-path'
+import { path } from "@snout/router-path";
 
 // This pattern would suit paths like /user/111 or /user/some-string-id
-const user = path`/user/${'id'}`
+const user = path`/user/${"id"}`;
 ```
 
 The definition of the path pattern is enclosed in backtick characters (`` ` ``).
-Any *substitutions* (e.g. `${'id'}`) become the path pattern's parameters. The
+Any _substitutions_ (e.g. `${'id'}`) become the path pattern's parameters. The
 surrounding text segments are interpreted literally, and become the static parts
 of the path pattern. These text segments can be used on either side of a
 substitution, effectively forming static prefixes and suffixes:
 
 ```ts no-transpile
 // This pattern would suit paths like /group/snout/members or /group/P19/members
-const groupMembers = path`/group/${'slug'}/members`
+const groupMembers = path`/group/${"slug"}/members`;
 ```
 
 In the previous `groupMembers` example pattern:
@@ -50,13 +50,13 @@ In the previous `groupMembers` example pattern:
 :::info Why tagged templates?
 
 If you're not used to the [tagged template literal] syntax, don't worry. Tagged
-templates *are* a lesser-known JavaScript language feature, but they've been
+templates _are_ a lesser-known JavaScript language feature, but they've been
 [supported by all modern browsers] for some time now. They're really just a
 fancy way to call a function.
 
 **Snout Router Path** uses tagged template literals because it means there's no
-need to invent a special syntax for defining path patterns. The *JavaScript
-language itself* already does the work of parsing your path pattern into
+need to invent a special syntax for defining path patterns. The _JavaScript
+language itself_ already does the work of parsing your path pattern into
 parameters and literal text segments.
 
 :::
@@ -68,16 +68,16 @@ strings. For example, when you define the following `imagesByCategory` example
 pattern, you also create a simple parameter named `category`:
 
 ```ts no-transpile
-import {path} from '@snout/router-path'
+import { path } from "@snout/router-path";
 
-const imagesByCategory = path`/images/${'category'}`
+const imagesByCategory = path`/images/${"category"}`;
 ```
 
 We'll go into more detail about exactly how these simple parameters behave in
 the sections on [simple parameter matching] and [building with simple
 parameters], but for now all you need to know is that using a string is a
 short-hand method for creating a simple parameter, with the string becoming the
-*name* of the new parameter.
+_name_ of the new parameter.
 
 In order to keep **Snout Router Path** light and easy to maintain, only these
 simple parameters are included out of the box. In most cases, they should be all
@@ -92,11 +92,11 @@ implementations like the ones in this package, you typically need to call a
 separate function to create the parameters:
 
 ```ts no-transpile
-import {path} from '@snout/router-path'
-import {some} from '@snout/router-path-extras'
+import { path } from "@snout/router-path";
+import { some } from "@snout/router-path-extras";
 
 // This pattern would suit paths like /tagged/snout or /tagged/squishy/pigs
-const tagged = path`/tagged/${some('tags')}`
+const tagged = path`/tagged/${some("tags")}`;
 ```
 
 In the previous `tagged` example pattern, we're using a custom parameter
@@ -112,8 +112,8 @@ There's no strict requirement for parameters to be created inline. For example,
 this is an alternate way to define the previous `tagged` example pattern:
 
 ```ts no-transpile
-const tagsParam = some('tags')
-const tagged = path`/tagged/${tagsParam}`
+const tagsParam = some("tags");
+const tagged = path`/tagged/${tagsParam}`;
 ```
 
 :::
@@ -125,9 +125,9 @@ pattern. That is, in the following `groupMembers` example pattern, the `slug`
 parameter takes up the entire middle segment of the pattern:
 
 ```ts no-transpile
-import {path} from '@snout/router-path'
+import { path } from "@snout/router-path";
 
-const groupMembers = path`/group/${'slug'}/members`
+const groupMembers = path`/group/${"slug"}/members`;
 ```
 
 But there's nothing to say that a parameter must begin and end with `/`
@@ -135,7 +135,7 @@ characters like this. You can also add static prefixes or suffixes around a
 parameter by adding them to the text portion of a pattern:
 
 ```ts no-transpile
-const servicesWithLabel = path`/services/with-${'label'}-label`
+const servicesWithLabel = path`/services/with-${"label"}-label`;
 ```
 
 :::tip
@@ -151,10 +151,10 @@ You can create path patterns with multiple parameters by using multiple
 substitutions:
 
 ```ts no-transpile
-import {path} from '@snout/router-path'
+import { path } from "@snout/router-path";
 
 // This pattern would suit paths like /v1/guides/getting-started or /latest/guides/installation
-const guide = path`/${'version'}/guides/${'name'}`
+const guide = path`/${"version"}/guides/${"name"}`;
 ```
 
 :::caution
@@ -171,10 +171,10 @@ you still need to call the [`path`] function using [tagged template literal]
 syntax:
 
 ```ts no-transpile
-import {path} from '@snout/router-path'
+import { path } from "@snout/router-path";
 
 // This pattern would suit the path /pages/faq only
-const faq = path`/pages/faq`
+const faq = path`/pages/faq`;
 ```
 
 ## Matching paths {#matching-paths}
@@ -184,40 +184,39 @@ If the path matches, then [`match`] will parse the path into a set of arguments.
 If it does not match, then [`match`] will return `undefined`:
 
 ```ts no-transpile
-import {path} from '@snout/router-path'
+import { path } from "@snout/router-path";
 
-const user = path`/user/${'id'}`
+const user = path`/user/${"id"}`;
 
-user.match('/user/111')        // returns {id: '111'}
-user.match('/user/snoutabout') // returns {id: 'snoutabout'}
+user.match("/user/111"); // returns {id: '111'}
+user.match("/user/snoutabout"); // returns {id: 'snoutabout'}
 
 // returns undefined - this path does not match the pattern
-user.match('/settings/notifications')
+user.match("/settings/notifications");
 ```
 
 If you only want to know whether a pattern matches a path, but you don't need
 the parsed arguments, you can use the simpler [`test`] method, which returns a
 boolean indicating whether the path matched instead:
 
-
 ```ts no-transpile
-user.test('/user/111')               // returns true
-user.test('/user/snoutabout')        // returns true
-user.test('/settings/notifications') // returns false
+user.test("/user/111"); // returns true
+user.test("/user/snoutabout"); // returns true
+user.test("/settings/notifications"); // returns false
 ```
 
-Paths are only considered to be "matching" when the pattern matches the *whole*
+Paths are only considered to be "matching" when the pattern matches the _whole_
 path. For example, if you create a path with no parameters, you will notice that
 partial matches cannot occur:
 
 ```ts no-transpile
-const recentArticles = path`/articles/recent`
+const recentArticles = path`/articles/recent`;
 
 // returns false - this path does not match, due to the extra prefix
-recentArticles.test('/feed/articles/recent')
+recentArticles.test("/feed/articles/recent");
 
 // returns false - this path does not match, due to the extra suffix
-recentArticles.test('/articles/recent/tagged/snout')
+recentArticles.test("/articles/recent/tagged/snout");
 ```
 
 ### Matches with multiple parameters {#matches-with-multiple-parameters}
@@ -226,15 +225,15 @@ If your path pattern has multiple parameters, a successful match will produce
 arguments that have a property for each parameter:
 
 ```ts no-transpile
-import {path} from '@snout/router-path'
+import { path } from "@snout/router-path";
 
-const pluginSettings = path`/plugin/${'plugin'}/settings/${'type'}`
+const pluginSettings = path`/plugin/${"plugin"}/settings/${"type"}`;
 
 // returns {plugin: 'snout-router', type: 'routes'}
-pluginSettings.match('/plugin/snout-router/settings/routes')
+pluginSettings.match("/plugin/snout-router/settings/routes");
 
 // returns {plugin: 'dogma', type: 'apps'}
-pluginSettings.match('/plugin/dogma/settings/apps')
+pluginSettings.match("/plugin/dogma/settings/apps");
 ```
 
 ### Matches with no parameters {#matches-with-no-parameters}
@@ -243,11 +242,11 @@ If your path pattern has no parameters, a successful match will produce empty
 arguments (i.e. an empty object):
 
 ```ts no-transpile
-import {path} from '@snout/router-path'
+import { path } from "@snout/router-path";
 
-const dashboard = path`/dashboard`
+const dashboard = path`/dashboard`;
 
-dashboard.match('/dashboard') // returns {}
+dashboard.match("/dashboard"); // returns {}
 ```
 
 ### Match types {#match-types}
@@ -259,22 +258,22 @@ will also know the types of your arguments, preventing you from using them
 incorrectly:
 
 ```ts no-transpile
-import {path} from '@snout/router-path'
-import {some} from '@snout/router-path-extras'
+import { path } from "@snout/router-path";
+import { some } from "@snout/router-path-extras";
 
-const articles = path`/articles/${'category'}/tagged/${some('tags')}`
+const articles = path`/articles/${"category"}/tagged/${some("tags")}`;
 
 // TypeScript "knows" that successful match arguments will contain:
 //   - category: A string
 //   - tags:     An array of strings with at least one member
-const match = articles.match('/articles/pachyderms/tagged/huge/snouts')
+const match = articles.match("/articles/pachyderms/tagged/huge/snouts");
 
 if (match) {
-  console.log(match.category)              // no error
-  console.log(match.tags)                  // no error
-  console.log(match.tags[0].toLowerCase()) // no error
-  console.log(match.tags[1].toLowerCase()) // type error (if noUncheckedIndexedAccess is enabled)
-  console.log(match.nonexistent)           // type error
+  console.log(match.category); // no error
+  console.log(match.tags); // no error
+  console.log(match.tags[0].toLowerCase()); // no error
+  console.log(match.tags[1].toLowerCase()); // type error (if noUncheckedIndexedAccess is enabled)
+  console.log(match.nonexistent); // type error
 }
 ```
 
@@ -292,32 +291,32 @@ characters. They will consume anything up until the first `/` character, or the
 end of the path:
 
 ```ts no-transpile
-import {path} from '@snout/router-path'
+import { path } from "@snout/router-path";
 
-const user = path`/user/${'id'}`
+const user = path`/user/${"id"}`;
 
 // returns {id: '👉 🐽 👈'}
-user.match('/user/👉 🐽 👈')
+user.match("/user/👉 🐽 👈");
 
 // returns {id: ':?#%'} - there are no special characters other than /
-user.match('/user/:?#%')
+user.match("/user/:?#%");
 
 // returns undefined - the id parameter will only consume one segment
-user.match('/user/111/profile')
+user.match("/user/111/profile");
 ```
 
 Simple parameters will **not** match empty path segments:
 
 ```ts no-transpile
-const groupMembers = path`/group/${'slug'}/members`
+const groupMembers = path`/group/${"slug"}/members`;
 
 // returns undefined - the slug argument is empty
-groupMembers.match('/group//members')
+groupMembers.match("/group//members");
 
-const user = path`/user/${'id'}`
+const user = path`/user/${"id"}`;
 
 // returns undefined - the id argument is empty
-user.match('/user/')
+user.match("/user/");
 ```
 
 :::tip
@@ -332,10 +331,10 @@ The arguments produced by simple parameters will always be strings. There is
 deliberately no "magic" type coercion going on:
 
 ```ts no-transpile
-const group = path`/group/${'id'}`
+const group = path`/group/${"id"}`;
 
 // returns {id: '111'} - note that id is a string, not a number
-group.match('/group/111')
+group.match("/group/111");
 ```
 
 If you want parameters that produce other types of arguments, then you'll need
@@ -349,13 +348,13 @@ implementation of each parameter. Some [custom parameter] implementations just
 produce argument types other than strings:
 
 ```ts no-transpile
-import {path} from '@snout/router-path'
-import {int} from '@snout/router-path-extras'
+import { path } from "@snout/router-path";
+import { int } from "@snout/router-path-extras";
 
-const job = path`/job/${int('num')}`
+const job = path`/job/${int("num")}`;
 
 // returns {num: 111} - note that num is a number, not a string
-job.match('/job/111')
+job.match("/job/111");
 ```
 
 But [custom parameter] implementations also have the power to transform the
@@ -363,16 +362,16 @@ arguments in just about any way. So check their individual documentation for
 more specific information on how they behave when matching paths:
 
 ```ts no-transpile
-import {path} from '@snout/router-path'
-import {optional} from '@snout/router-path-extras'
+import { path } from "@snout/router-path";
+import { optional } from "@snout/router-path-extras";
 
-const pachyderms = path`/pachyderms${optional`/with/${'feature'}`}`
+const pachyderms = path`/pachyderms${optional`/with/${"feature"}`}`;
 
 // returns {feature: undefined}
-pachyderms.match('/pachyderms')
+pachyderms.match("/pachyderms");
 
 // returns {feature: 'snouts'}
-pachyderms.match('/pachyderms/with/snouts')
+pachyderms.match("/pachyderms/with/snouts");
 ```
 
 ### URL path matching {#url-path-matching}
@@ -382,13 +381,13 @@ your path pattern to match against URL paths, make sure you decode the path
 with [`decodeURIComponent`] before matching:
 
 ```ts no-transpile
-import {path} from '@snout/router-path'
+import { path } from "@snout/router-path";
 
-const article = path`/article/${'name'}`
-const url = new URL('https://snout.dev/article/10%20Biggest%20Snouts')
+const article = path`/article/${"name"}`;
+const url = new URL("https://snout.dev/article/10%20Biggest%20Snouts");
 
 // returns {name: '10 Biggest Snouts'}
-article.match(decodeURIComponent(url.pathname))
+article.match(decodeURIComponent(url.pathname));
 ```
 
 ## Building paths {#building-paths}
@@ -397,19 +396,19 @@ You can create a path from your pattern by using the [`build`] method. You'll
 need to supply appropriate arguments to build with:
 
 ```ts no-transpile
-import {path} from '@snout/router-path'
+import { path } from "@snout/router-path";
 
-const user = path`/user/${'id'}`
+const user = path`/user/${"id"}`;
 
-user.build({id: '111'})        // returns '/user/111'
-user.build({id: 'snoutabout'}) // returns '/user/snoutabout'
+user.build({ id: "111" }); // returns '/user/111'
+user.build({ id: "snoutabout" }); // returns '/user/snoutabout'
 ```
 
 It's safe to supply additional arguments. If you do, they will have no affect on
 the output path:
 
 ```ts no-transpile
-user.build({username: 'pachyderm', id: '222'}) // returns '/user/222'
+user.build({ username: "pachyderm", id: "222" }); // returns '/user/222'
 ```
 
 ### Why build paths? {#why-build-paths}
@@ -421,16 +420,16 @@ to give everyone a route matching their username at the root of your
 application:
 
 ```ts no-transpile
-const profile = path`/${'username'}`
+const profile = path`/${"username"}`;
 ```
 
 You use this path pattern both when routing incoming requests:
 
 ```js
-function handleRequest (request, response) {
-  const args = profile.match(request.path)
+function handleRequest(request, response) {
+  const args = profile.match(request.path);
 
-  if (args) return renderProfile(args, request, response)
+  if (args) return renderProfile(args, request, response);
 
   // ...
 }
@@ -439,10 +438,10 @@ function handleRequest (request, response) {
 And when building the links to profile pages:
 
 ```js
-function renderProfileLink (args) {
-  const {username} = args
+function renderProfileLink(args) {
+  const { username } = args;
 
-  return `<a href="${profile.build(args)}">${username}</a>`
+  return `<a href="${profile.build(args)}">${username}</a>`;
 }
 ```
 
@@ -454,7 +453,7 @@ Thankfully, this is very simple change. All you have to change is the profile
 path pattern:
 
 ```ts no-transpile
-const profile = path`/profile/${'username'}`
+const profile = path`/profile/${"username"}`;
 ```
 
 Since you didn't change the parameters, there's no need to change your
@@ -468,15 +467,15 @@ If your path pattern has multiple parameters, you'll need to supply arguments
 with a property for each parameter:
 
 ```ts no-transpile
-import {path} from '@snout/router-path'
+import { path } from "@snout/router-path";
 
-const pluginSettings = path`/plugin/${'plugin'}/settings/${'type'}`
+const pluginSettings = path`/plugin/${"plugin"}/settings/${"type"}`;
 
 // returns '/plugin/snout-router/settings/routes'
-pluginSettings.build({plugin: 'snout-router', type: 'routes'})
+pluginSettings.build({ plugin: "snout-router", type: "routes" });
 
 // returns '/plugin/dogma/settings/apps'
-pluginSettings.build({plugin: 'dogma', type: 'apps'})
+pluginSettings.build({ plugin: "dogma", type: "apps" });
 ```
 
 As with single-parameter path patterns, additional arguments will have no affect
@@ -484,7 +483,7 @@ on the output path:
 
 ```ts no-transpile
 // returns '/plugin/github/settings/credentials'
-pluginSettings.build({extra: 'snout', plugin: 'github', type: 'credentials'})
+pluginSettings.build({ extra: "snout", plugin: "github", type: "credentials" });
 ```
 
 ### Building with no parameters {#building-with-no-parameters}
@@ -493,12 +492,12 @@ If your path pattern has no parameters, you can supply empty arguments (i.e. an
 empty object) to build a path:
 
 ```ts no-transpile
-import {path} from '@snout/router-path'
+import { path } from "@snout/router-path";
 
-const dashboard = path`/dashboard`
+const dashboard = path`/dashboard`;
 
 // returns '/dashboard'
-dashboard.build({})
+dashboard.build({});
 ```
 
 As with single-parameter path patterns, additional arguments will have no affect
@@ -506,7 +505,7 @@ on the output path:
 
 ```ts no-transpile
 // returns '/dashboard'
-dashboard.build({bonus: 'pachyderm'})
+dashboard.build({ bonus: "pachyderm" });
 ```
 
 ### Build argument types {#build-argument-types}
@@ -515,22 +514,22 @@ If you're using [TypeScript], the compiler will warn you if you're using the
 wrong arguments when building paths:
 
 ```ts no-transpile
-import {path} from '@snout/router-path'
-import {some} from '@snout/router-path-extras'
+import { path } from "@snout/router-path";
+import { some } from "@snout/router-path-extras";
 
-const articles = path`/articles/${'category'}/tagged/${some('tags')}`
+const articles = path`/articles/${"category"}/tagged/${some("tags")}`;
 
 // TypeScript "knows" that build arguments need to contain:
 //   - category: A string
 //   - tags:     An array of strings with at least one member
 
-articles.build({category: 'pachyderms', tags: ['huge', 'snouts']}) // no error
-articles.build({category: 'pachyderms', tags: ['snouts']})         // no error
+articles.build({ category: "pachyderms", tags: ["huge", "snouts"] }); // no error
+articles.build({ category: "pachyderms", tags: ["snouts"] }); // no error
 
-articles.build({category: 'pachyderms', tags: []}) // type error - not enough tags
-articles.build({category: 'pachyderms'})           // type error - missing tags
-articles.build({tags: ['snouts']})                 // type error - missing category
-articles.build({})                                 // type error - missing both
+articles.build({ category: "pachyderms", tags: [] }); // type error - not enough tags
+articles.build({ category: "pachyderms" }); // type error - missing tags
+articles.build({ tags: ["snouts"] }); // type error - missing category
+articles.build({}); // type error - missing both
 ```
 
 :::tip Try me!
@@ -547,21 +546,21 @@ time. If you're using vanilla JavaScript, you'll need to be careful and remember
 to do string conversion yourself:
 
 ```ts no-transpile
-import {path} from '@snout/router-path'
+import { path } from "@snout/router-path";
 
-const group = path`/group/${'id'}`
+const group = path`/group/${"id"}`;
 
-group.build({id: '111'})       // strings are fine
-group.build({id: String(111)}) // other types should be converted
+group.build({ id: "111" }); // strings are fine
+group.build({ id: String(111) }); // other types should be converted
 
-group.build({id: 111})         // don't do this!
+group.build({ id: 111 }); // don't do this!
 ```
 
-If you supply a simple parameter with an *empty* string argument when building a
+If you supply a simple parameter with an _empty_ string argument when building a
 path, an exception will be thrown:
 
 ```ts no-transpile
-group.build({id: ''}) // throws 'Empty parameter "id"'
+group.build({ id: "" }); // throws 'Empty parameter "id"'
 ```
 
 :::caution
@@ -585,13 +584,13 @@ implementation of each parameter. Some [custom parameter] implementations just
 accept argument types other than strings:
 
 ```ts no-transpile
-import {path} from '@snout/router-path'
-import {int} from '@snout/router-path-extras'
+import { path } from "@snout/router-path";
+import { int } from "@snout/router-path-extras";
 
-const job = path`/job/${int('num')}`
+const job = path`/job/${int("num")}`;
 
 // returns '/job/111' - note that num is a number, not a string
-job.build({num: 111})
+job.build({ num: 111 });
 ```
 
 But [custom parameter] implementations also have the power to accept just about
@@ -600,13 +599,13 @@ their individual documentation for more specific information on how they behave
 when building paths:
 
 ```ts no-transpile
-import {path} from '@snout/router-path'
-import {optional} from '@snout/router-path-extras'
+import { path } from "@snout/router-path";
+import { optional } from "@snout/router-path-extras";
 
-const pachyderms = path`/pachyderms${optional`/with/${'feature'}`}`
+const pachyderms = path`/pachyderms${optional`/with/${"feature"}`}`;
 
-pachyderms.build({})                  // returns '/pachyderms'
-pachyderms.build({feature: 'snouts'}) // returns '/pachyderms/with/snouts'
+pachyderms.build({}); // returns '/pachyderms'
+pachyderms.build({ feature: "snouts" }); // returns '/pachyderms/with/snouts'
 ```
 
 ### Building URL paths {#building-url-paths}
@@ -618,15 +617,15 @@ standard [URL] implementation available in most JavaScript environments handles
 the encoding for you:
 
 ```ts no-transpile
-import {path} from '@snout/router-path'
+import { path } from "@snout/router-path";
 
-const article = path`/article/${'name'}`
+const article = path`/article/${"name"}`;
 
-const url = new URL('https://snout.dev/')
-url.pathname = article.build({name: '10 Biggest Snouts'})
+const url = new URL("https://snout.dev/");
+url.pathname = article.build({ name: "10 Biggest Snouts" });
 
 // returns 'https://snout.dev/article/10%20Biggest%20Snouts'
-url.toString()
+url.toString();
 ```
 
 <!-- References -->
@@ -641,7 +640,6 @@ url.toString()
 [custom parameters guide section on path separators]: custom-parameters.mdx#path-separators
 [custom parameters]: custom-parameters.mdx
 [simple parameter matching]: #simple-parameter-matching
-
 [`@snout/router-path-extras`]: https://snout.dev/router-path-extras
 [`decodeuricomponent`]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/decodeURIComponent
 [supported by all modern browsers]: https://caniuse.com/template-literals

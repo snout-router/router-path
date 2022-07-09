@@ -10,7 +10,7 @@ hide_title: true
 Produces a [`Param`] implementation from a supplied string or parameter.
 
 ```ts no-transpile
-function normalizeParam (p: ParamOrString): Param
+function normalizeParam(p: ParamOrString): Param;
 ```
 
 ## Parameters {#parameters}
@@ -39,9 +39,9 @@ the same function used internally when creating path patterns to convert any
 parameters specified as strings into full [`Param`] implementations:
 
 ```ts no-transpile
-import {path} from '@snout/router-path'
+import { path } from "@snout/router-path";
 
-const user = path`/user/${'id'}` // internally, 'id' is converted to a Param using normalizeParam
+const user = path`/user/${"id"}`; // internally, 'id' is converted to a Param using normalizeParam
 ```
 
 A real-world example that uses `normalizeParam` are the `optional` parameters
@@ -53,5 +53,4 @@ implemented by [`@snout/router-path-extras`].
 [`param`]: type/Param.mdx
 [`path`]: path.mdx
 [custom parameters]: ../guides/custom-parameters.mdx
-
 [`@snout/router-path-extras`]: https://snout.dev/router-path-extras

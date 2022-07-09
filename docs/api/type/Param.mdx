@@ -53,7 +53,7 @@ The expression **must** have exactly one [capturing group].
 Format an argument for use in a path.
 
 ```ts no-transpile
-function format (arg: Arg): string
+function format(arg: Arg): string;
 ```
 
 :::info See also
@@ -79,7 +79,7 @@ The strings produced by `format` should match [`exp`], and the resulting
 Parse a successful match against [`exp`].
 
 ```ts no-transpile
-function parse (match: string): Arg
+function parse(match: string): Arg;
 ```
 
 :::info See also
@@ -93,7 +93,7 @@ function parse (match: string): Arg
 Accepts a single argument - the [capturing group] content of a successful match
 against [`exp`].
 
-`parse` should be capable of parsing *any* [capturing group] content that can
+`parse` should be capable of parsing _any_ [capturing group] content that can
 occur in a successful match of [`exp`] against the strings that are produced by
 [`format`].
 
@@ -132,10 +132,10 @@ Leaving off the [`Arg`] type variable creates a `Param` where the [`Arg`] type
 is `string`, meaning that the following types are equivalent:
 
 ```ts no-transpile
-import {Param} from '@snout/router-path'
+import { Param } from "@snout/router-path";
 
-type ParamB = Param<'param-name'>
-type ParamA = Param<'param-name', string>
+type ParamB = Param<"param-name">;
+type ParamA = Param<"param-name", string>;
 ```
 
 :::info See also
@@ -157,7 +157,6 @@ type ParamA = Param<'param-name', string>
 [matching and parsing]: ../../guides/custom-parameters.mdx#matching-and-parsing
 [type safety]: ../../guides/custom-parameters.mdx#type-safety
 [type-safe parameter names]: ../../guides/custom-parameters.mdx#type-safe-parameter-names
-
 [capturing group]: https://javascript.info/regexp-groups
 [generic]: https://www.typescriptlang.org/docs/handbook/2/generics.html
 [literal type]: https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#literal-types

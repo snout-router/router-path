@@ -1,12 +1,11 @@
 module.exports = {
-  extends: ['@snout/react'],
+  extends: ["@snout/react"],
   rules: {
-    'import/no-unresolved': [
-      'error',
+    "import/no-unresolved": [
+      "error",
       {
-        ignore: ['^@docusaurus', '^@site', '^@theme'],
+        ignore: ["^@docusaurus", "^@site", "^@theme"],
       },
     ],
-    '@typescript-eslint/explicit-function-return-type': 'off',
   },
-}
+};

@@ -1,3 +1,3 @@
-export function hasType<T> (value: T): null {
-  return null
+export function hasType<T>(_: T): null {
+  return null;
 }

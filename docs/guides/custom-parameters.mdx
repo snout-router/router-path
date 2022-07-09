@@ -23,7 +23,7 @@ appearing.
 When matching a path against a pattern, the individual parameters contribute to
 deciding whether the overall path matches the pattern or not. The [`exp`]
 property of a route parameter is a [regular expression] that is used to match a
-*portion* of the path. This expression **must** have exactly one [capturing
+_portion_ of the path. This expression **must** have exactly one [capturing
 group].
 
 When a path matches a pattern, the content captured by [`exp`]'s [capturing
@@ -38,22 +38,22 @@ type of parameter you can imagine. As an example, consider parameters based on
 integers instead of strings:
 
 ```ts
-import {Param, path} from '@snout/router-path'
+import { Param, path } from "@snout/router-path";
 
-function int<Name extends string> (name: Name): Param<Name, number> {
+function int<Name extends string>(name: Name): Param<Name, number> {
   return {
     name,
     exp: /(0|[1-9]\d*)/, // `exp` allows integer strings only, no leading zeroes
-    format: arg => `${Math.floor(arg)}`,
-    parse: match => parseInt(match, 10),
-  }
+    format: (arg) => `${Math.floor(arg)}`,
+    parse: (match) => parseInt(match, 10),
+  };
 }
 
-const user = path`/user/${int('id')}`
+const user = path`/user/${int("id")}`;
 
-user.test('/user/111') // returns true
-user.test('/user/011') // returns false
-user.test('/user/abc') // returns false
+user.test("/user/111"); // returns true
+user.test("/user/011"); // returns false
+user.test("/user/abc"); // returns false
 ```
 
 :::tip
@@ -72,21 +72,21 @@ and suffixes with [`exp`], without having to deal with them in [`parse`] as
 well:
 
 ```ts
-import {Param, path} from '@snout/router-path'
+import { Param, path } from "@snout/router-path";
 
-function lang (): Param<'lang'> {
+function lang(): Param<"lang"> {
   return {
-    name: 'lang',
+    name: "lang",
     exp: /lang-([a-z]{2}-[A-Z]{2})/, // `exp` allows strings like 'lang-en-US'
-    format: arg => `lang-${arg}`,    // the prefix must be re-added when formatting
-    parse: match => match,           // no need to strip the prefix when parsing
-  }
+    format: (arg) => `lang-${arg}`, // the prefix must be re-added when formatting
+    parse: (match) => match, // no need to strip the prefix when parsing
+  };
 }
 
-const documents = path`/documents/${lang()}`
+const documents = path`/documents/${lang()}`;
 
-documents.match('/documents/lang-en-US') // returns {lang: 'en-US'}
-documents.match('/documents/lang-ko-KR') // returns {lang: 'ko-KR'}
+documents.match("/documents/lang-en-US"); // returns {lang: 'en-US'}
+documents.match("/documents/lang-ko-KR"); // returns {lang: 'ko-KR'}
 ```
 
 Note that you can also build affixes into path pattern segments, which is
@@ -94,12 +94,12 @@ another way to handle them. This is a simpler solution than implementing a
 custom parameter in many cases:
 
 ```ts no-transpile
-import {path} from '@snout/router-path'
+import { path } from "@snout/router-path";
 
-const documents = path`/documents/lang-${'lang'}`
+const documents = path`/documents/lang-${"lang"}`;
 
-documents.match('/documents/lang-en-US') // returns {lang: 'en-US'}
-documents.match('/documents/lang-ko-KR') // returns {lang: 'ko-KR'}
+documents.match("/documents/lang-en-US"); // returns {lang: 'en-US'}
+documents.match("/documents/lang-ko-KR"); // returns {lang: 'ko-KR'}
 ```
 
 ### Path separators {#path-separators}
@@ -108,21 +108,21 @@ Although it's common to use `/` as a separator for path segments, it's possible
 to use [`exp`] to implement paths that use other separators:
 
 ```ts
-import {Param, path} from '@snout/router-path'
+import { Param, path } from "@snout/router-path";
 
-function dotted<Name extends string> (name: Name): Param<Name> {
+function dotted<Name extends string>(name: Name): Param<Name> {
   return {
     name,
     exp: /([^.]+)/, // `exp` consumes everything up until the next `.`
-    format: arg => arg,
-    parse: match => match,
-  }
+    format: (arg) => arg,
+    parse: (match) => match,
+  };
 }
 
-const roles = path`user.${dotted('username')}.roles`
+const roles = path`user.${dotted("username")}.roles`;
 
-roles.match('user.piglet.roles') // returns {username: 'piglet'}
-roles.match('user.snouty.roles') // returns {username: 'snouty'}
+roles.match("user.piglet.roles"); // returns {username: 'piglet'}
+roles.match("user.snouty.roles"); // returns {username: 'snouty'}
 ```
 
 ### Path segments {#path-segments}
@@ -131,21 +131,21 @@ Parameters typically consume a single path segment, but this is actually
 determined by [`exp`], which can be made to consume multiple path segments:
 
 ```ts
-import {Param, path} from '@snout/router-path'
+import { Param, path } from "@snout/router-path";
 
-function anything<Name extends string> (name: Name): Param<Name> {
+function anything<Name extends string>(name: Name): Param<Name> {
   return {
     name,
     exp: /(.+)/,
-    format: arg => arg,
-    parse: match => match,
-  }
+    format: (arg) => arg,
+    parse: (match) => match,
+  };
 }
 
-const article = path`/article/${anything('etc')}`
+const article = path`/article/${anything("etc")}`;
 
-article.match('/article/10 Biggest Snouts') // returns {etc: '10 Biggest Snouts'}
-article.match('/article/sci-fi/space-pigs') // returns {etc: 'sci-fi/space-pigs'}
+article.match("/article/10 Biggest Snouts"); // returns {etc: '10 Biggest Snouts'}
+article.match("/article/sci-fi/space-pigs"); // returns {etc: 'sci-fi/space-pigs'}
 ```
 
 :::danger
@@ -164,7 +164,7 @@ type implementations - including "repeating" parameter types such as `any` and
 When building a path from a pattern, the individual parameters contribute to
 building the overall path by formatting the arguments they are passed. No matter
 what type of arguments a parameter accepts, it must always be able to format an
-argument into a string that makes up a *portion* of a path.
+argument into a string that makes up a _portion_ of a path.
 
 For example, the integer-based parameters used as an example in the [Matching
 and Parsing] section are also responsible for formatting the numbers they are
@@ -172,21 +172,21 @@ passed when building a path that uses them. They do so by implementing the
 [`format`] method:
 
 ```ts
-import {Param, path} from '@snout/router-path'
+import { Param, path } from "@snout/router-path";
 
-function int<Name extends string> (name: Name): Param<Name, number> {
+function int<Name extends string>(name: Name): Param<Name, number> {
   return {
     name,
     exp: /(0|[1-9]\d*)/,
-    format: arg => `${Math.floor(arg)}`, // `format` formats a number as an integer string
-    parse: match => parseInt(match, 10),
-  }
+    format: (arg) => `${Math.floor(arg)}`, // `format` formats a number as an integer string
+    parse: (match) => parseInt(match, 10),
+  };
 }
 
-const user = path`/user/${int('id')}`
+const user = path`/user/${int("id")}`;
 
-user.build({id: 111}) // returns '/user/111'
-user.build({id: 222}) // returns '/user/222'
+user.build({ id: 111 }); // returns '/user/111'
+user.build({ id: 222 }); // returns '/user/222'
 ```
 
 :::tip
@@ -206,23 +206,23 @@ warn us when we try to use a parameter that does not exist, or if we try to use
 an incorrect variable type with a parameter that does exist:
 
 ```ts no-transpile
-const user = path`/user/${int('id')}`
+const user = path`/user/${int("id")}`;
 
 // TypeScript "knows" that a successful match will contain a number for 'id':
 
-const match = user.match('/user/111')
+const match = user.match("/user/111");
 
 if (match) {
-  console.log(match.id.toExponential()) // no error
-  console.log(match.id.toUpperCase())   // type error
-  console.log(match.nonexistent)        // type error
+  console.log(match.id.toExponential()); // no error
+  console.log(match.id.toUpperCase()); // type error
+  console.log(match.nonexistent); // type error
 }
 
 // TypeScript "knows" that we need a number for 'id' when building the path:
 
-user.build({id: 111})   // no error
-user.build({id: '111'}) // type error
-user.build({})          // type error
+user.build({ id: 111 }); // no error
+user.build({ id: "111" }); // type error
+user.build({}); // type error
 ```
 
 :::tip Try me!
@@ -237,53 +237,53 @@ You may have noticed by reading the examples in this guide, that [`Param`] has a
 [`Name`][name type] type variable for the parameter name. This [literal type]
 contains the name of the parameter, but in a way that [TypeScript]'s type system
 understands. This is a key part of how [TypeScript] can know about the
-*existence* of route parameters.
+_existence_ of route parameters.
 
 The best way to ensure that custom parameters have the correct
 [`Name`][name type] type associated with them, is to use a [generic] function to
 create them:
 
 ```ts no-transpile
-import {Param, path} from '@snout/router-path'
+import { Param, path } from "@snout/router-path";
 
-function customParam<Name extends string> (name: Name): Param<Name> {
+function customParam<Name extends string>(name: Name): Param<Name> {
   return {
     name,
     exp: /([^/]+)/,
-    format: arg => arg,
-    parse: match => match,
-  }
+    format: (arg) => arg,
+    parse: (match) => match,
+  };
 }
 
-const category = customParam('category')
-const id = customParam('id')
+const category = customParam("category");
+const id = customParam("id");
 
-const article = path`/article/${category}/${id}`
+const article = path`/article/${category}/${id}`;
 ```
 
 It's also possible to directly create one-off parameters with [literal type]
 names in various ways using [TypeScript] syntax:
 
 ```ts no-transpile
-import {Param, path} from '@snout/router-path'
+import { Param, path } from "@snout/router-path";
 
 // explicit
-const category: Param<'category'> = {
-  name: 'category',
+const category: Param<"category"> = {
+  name: "category",
   exp: /([^/]+)/,
-  format: arg => arg,
-  parse: match => match,
-}
+  format: (arg) => arg,
+  parse: (match) => match,
+};
 
 // implicit
 const id = {
-  name: 'id' as 'id',
+  name: "id" as "id",
   exp: /([^/]+)/,
   format: (arg: string) => arg,
   parse: (match: string) => match,
-}
+};
 
-const article = path`/article/${category}/${id}`
+const article = path`/article/${category}/${id}`;
 ```
 
 <!-- References -->
@@ -295,9 +295,7 @@ const article = path`/article/${category}/${id}`
 [`parse`]: ../api/type/Param.mdx#property-parse
 [matching and parsing]: #matching-and-parsing
 [name type]: ../api/type/Param.mdx##type-variable-name
-
 [`@snout/router-path-extras`]: https://snout.dev/router-path-extras
-
 [capturing group]: https://javascript.info/regexp-groups
 [generic]: https://www.typescriptlang.org/docs/handbook/2/generics.html
 [literal type]: https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#literal-types

@@ -14,10 +14,10 @@ in some way based on the type of another parameter. An example is the `optional`
 parameters implemented by [`@snout/router-path-extras`].
 
 ```ts no-transpile
-import {Param, ParamArg} from '@snout/router-path'
+import { Param, ParamArg } from "@snout/router-path";
 
-type ParamA = Param<'a', string | number> // a parameter type using an Arg union type
-type Arg = ParamArg<ParamA>               // the extracted Arg type is string | number
+type ParamA = Param<"a", string | number>; // a parameter type using an Arg union type
+type Arg = ParamArg<ParamA>; // the extracted Arg type is string | number
 ```
 
 :::tip Try me!
@@ -31,5 +31,4 @@ type Arg = ParamArg<ParamA>               // the extracted Arg type is string | 
 [`arg`]: Param.mdx#type-variable-arg
 [`param`]: Param.mdx
 [custom parameters]: ../../guides/custom-parameters.mdx
-
 [`@snout/router-path-extras`]: https://snout.dev/router-path-extras

@@ -17,7 +17,7 @@ are created when using the [`path`] function.
 Build a path.
 
 ```ts no-transpile
-function build (args: { [paramName: string]: any }): string
+function build(args: { [paramName: string]: any }): string;
 ```
 
 #### Parameters {#method-build-parameters}
@@ -41,7 +41,7 @@ Check if a path matches the pattern, and return arguments if the match is
 successful.
 
 ```ts no-transpile
-function match (path: string): { [paramName: string]: any } | undefined
+function match(path: string): { [paramName: string]: any } | undefined;
 ```
 
 #### Parameters {#method-match-parameters}
@@ -62,7 +62,7 @@ If the path does not match the pattern, `match` will return `undefined`.
 Check if a path matches the pattern.
 
 ```ts no-transpile
-function test (path: string): boolean
+function test(path: string): boolean;
 ```
 
 #### Parameters {#method-test-parameters}
@@ -88,9 +88,9 @@ parameter types are automatically inferred when calling the [`path`] function to
 create path patterns:
 
 ```ts no-transpile
-import {path} from '@snout/router-path'
+import { path } from "@snout/router-path";
 
-const user = path`/user/${'id'}` // user has a type of PathPattern<[Param<'id', string>]>
+const user = path`/user/${"id"}`; // user has a type of PathPattern<[Param<'id', string>]>
 ```
 
 :::tip Try me!
@@ -103,5 +103,4 @@ const user = path`/user/${'id'}` // user has a type of PathPattern<[Param<'id', 
 
 [`path`]: ../path.mdx
 [path pattern]: ../../guides/path-patterns.mdx
-
 [generic]: https://www.typescriptlang.org/docs/handbook/2/generics.html

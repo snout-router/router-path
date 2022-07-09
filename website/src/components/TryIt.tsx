@@ -1,17 +1,16 @@
-import Link from '@docusaurus/Link'
-import Sandbox from '@theme/Sandbox'
-import clsx from 'clsx'
-import React from 'react'
-
-import {GETTING_STARTED_ID, GETTING_STARTED_URL} from '../sandbox'
-import styles from './TryIt.module.css'
+import Link from "@docusaurus/Link";
+import Sandbox from "@theme/Sandbox";
+import { clsx } from "clsx";
+import React from "react";
+import { GETTING_STARTED_ID, GETTING_STARTED_URL } from "../sandbox";
+import styles from "./TryIt.module.css";
 
 export default function TryIt() {
-  const typescriptUrl = 'https://www.typescriptlang.org/'
+  const typescriptUrl = "https://www.typescriptlang.org/";
 
   return (
     <section className={styles.tryIt}>
-      <div className={clsx('container', styles.smallOnly)}>
+      <div className={clsx("container", styles.smallOnly)}>
         <h2>Try it!</h2>
 
         <p>No time to read the docs? No worries. </p>
@@ -24,18 +23,18 @@ export default function TryIt() {
         </Link>
       </div>
 
-      <div className={clsx('container', styles.largeOnly)}>
+      <div className={clsx("container", styles.largeOnly)}>
         <div className="row">
           <div className="col col--2">
             <h2>Try it!</h2>
 
             <p>
-              No time to read the docs? No worries. Try{' '}
+              No time to read the docs? No worries. Try{" "}
               <strong>Snout Router Path</strong> right here.
             </p>
             <p>
               If you want <Link to={typescriptUrl}>TypeScript</Link> support,
-              you'll need to{' '}
+              you&apos;ll need to{" "}
               <Link to={GETTING_STARTED_URL}>open the full sandbox</Link>.
             </p>
           </div>
@@ -46,5 +45,5 @@ export default function TryIt() {
         </div>
       </div>
     </section>
-  )
+  );
 }
