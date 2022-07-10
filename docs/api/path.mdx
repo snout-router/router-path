@@ -33,6 +33,6 @@ import { path } from "@snout/router-path";
 
 const user = path`/user/${"id"}`;
 
-user.match("/user/111"); // returns {id: '111'}
-user.build({ id: "111" }); // returns '/user/111'
+user.match("/user/111"); // returns { id: "111" }
+user.build({ id: "111" }); // returns "/user/111"
 ```

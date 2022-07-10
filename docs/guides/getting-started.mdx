@@ -28,9 +28,9 @@ package manager:
   groupId="package-managers"
   defaultValue="npm"
   values={[
-    {label: 'npm', value: 'npm'},
-    {label: 'Yarn', value: 'yarn'},
-    {label: 'pnpm', value: 'pnpm'},
+    {label: "npm", value: "npm"},
+    {label: "Yarn", value: "yarn"},
+    {label: "pnpm", value: "pnpm"},
   ]}
 >
 <TabItem value="npm">
@@ -71,13 +71,13 @@ the path's arguments are:
 
 ```ts no-transpile
 user.test("/user/111"); // returns true
-user.match("/user/111"); // returns {id: '111'}
+user.match("/user/111"); // returns { id: "111" }
 ```
 
 It can also be used to turn a set of arguments into a path:
 
 ```ts no-transpile
-user.build({ id: "111" }); // returns '/user/111'
+user.build({ id: "111" }); // returns "/user/111"
 ```
 
 You can even try it out live right now:
@@ -104,7 +104,7 @@ when you're using your patterns incorrectly:
 [typescript]: https://www.typescriptlang.org/
 
 ```ts no-transpile
-// TypeScript "knows" that a successful match will contain an 'id':
+// TypeScript "knows" that a successful match will contain an "id":
 
 const match = user.match("/user/111");
 
@@ -113,7 +113,7 @@ if (match) {
   console.log(match.nonexistent); // type error
 }
 
-// TypeScript "knows" that we need an 'id' when building the path:
+// TypeScript "knows" that we need an "id" when building the path:
 
 user.build({ id: "111" }); // no error
 user.build({}); // type error
@@ -121,7 +121,7 @@ user.build({}); // type error
 
 :::tip Try me!
 
-[Try this example in the TypeScript Playground](https://www.typescriptlang.org/play?#code/JYWwDg9gTgLgBAbzAQxgCwL5wGZQiOAcgAEBnAOwgFcYB6PGgUygFoV1CAoTgYwnNLwqpZnAC8cdmgAGtYc1oASBIWAATQhmndatOABUAnmEYBlHlGBh4AIgDWlAO6kbcdKjjI4pKjx6NSUmwqABs4EFQeNDhHYBCwvnIYZGByTzTVDQAubkTBcMjoiXkoADoImCiACkI5EShaAEZmwgBKbmBsOCqKqNbETjg4PIgQxlKQiABzHsLS9X6hpeXdOEo4ZjwoQeH+UlHxyZnetFLKckYAD2BBRiT+1ZhjRg2oLc4MHT0jE3NLazg9icLjcaA8jheF0YanSRHUhBiaDucAARlQ4mpUlNQS8pDlOCVSmiMVUEOoskRmo1NA89OtNtACfUieiQmpSRhFssVnoniZXlsgA)
+[Try this example in the TypeScript Playground](https://www.typescriptlang.org/play?#code/JYWwDg9gTgLgBAbzmAhjAFnAvnAZlCEOAIgAEBnAOwgFcYB6AugUygFpUNiBuAKF4DGESuXg1yrOAF5kadAAN641vQAkCYsAAmxLPL6969OABUAnmGYBlAVGBh4xANbUA7uWJwMaOCjjkaAQFmcnJcGgAbOBA0AUxXYAiooUoYFGBKX0zNHQAufhTRaNjMGWUoADoYmDiACmIlCSh6AEY24gBKA2BcOFrquI7EXjg4QogI5gqIiABzfpKK7S64IzhqOFYCKBGx4XIJqZn5gfQK6kpmAA9gUWZUlbWYC2ZNqG3eLH4180sbOwcJBcEHcnm88Fcr0uzC0WRI2k8rnQ9zgACMaIktBlZl5kbIMPleOUKujMbUkNpciQ2i1PFhHsYNltoESmiSMREtOT6dxVsZnpY3tsgA)
 
 :::
 

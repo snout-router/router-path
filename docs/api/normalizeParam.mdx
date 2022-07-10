@@ -52,7 +52,7 @@ specified as strings into full [`Param`] implementations:
 ```ts no-transpile
 import { path } from "@snout/router-path";
 
-const user = path`/user/${"id"}`; // internally, 'id' is converted to a Param using normalizeParam
+const user = path`/user/${"id"}`; // internally, "id" is converted to a Param using normalizeParam
 ```
 
 A real-world example that uses `normalizeParam` are the `optional` parameters

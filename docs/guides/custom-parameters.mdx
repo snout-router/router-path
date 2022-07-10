@@ -92,7 +92,7 @@ import { Param, path } from "@snout/router-path";
 function lang(): Param<"lang"> {
   return {
     name: "lang",
-    exp: /lang-([a-z]{2}-[A-Z]{2})/, // `exp` allows strings like 'lang-en-US'
+    exp: /lang-([a-z]{2}-[A-Z]{2})/, // `exp` allows strings like "lang-en-US"
     format: (arg) => `lang-${arg}`, // the prefix must be re-added when formatting
     parse: (match) => match, // no need to strip the prefix when parsing
   };
@@ -100,8 +100,8 @@ function lang(): Param<"lang"> {
 
 const documents = path`/documents/${lang()}`;
 
-documents.match("/documents/lang-en-US"); // returns {lang: 'en-US'}
-documents.match("/documents/lang-ko-KR"); // returns {lang: 'ko-KR'}
+documents.match("/documents/lang-en-US"); // returns { lang: "en-US" }
+documents.match("/documents/lang-ko-KR"); // returns { lang: "ko-KR" }
 ```
 
 Note that you can also build affixes into path pattern segments, which is
@@ -113,8 +113,8 @@ import { path } from "@snout/router-path";
 
 const documents = path`/documents/lang-${"lang"}`;
 
-documents.match("/documents/lang-en-US"); // returns {lang: 'en-US'}
-documents.match("/documents/lang-ko-KR"); // returns {lang: 'ko-KR'}
+documents.match("/documents/lang-en-US"); // returns { lang: "en-US" }
+documents.match("/documents/lang-ko-KR"); // returns { lang: "ko-KR" }
 ```
 
 ### Path separators {#path-separators}
@@ -138,8 +138,8 @@ function dotted<Name extends string>(name: Name): Param<Name> {
 
 const roles = path`user.${dotted("username")}.roles`;
 
-roles.match("user.piglet.roles"); // returns {username: 'piglet'}
-roles.match("user.snouty.roles"); // returns {username: 'snouty'}
+roles.match("user.piglet.roles"); // returns { username: "piglet" }
+roles.match("user.snouty.roles"); // returns { username: "snouty" }
 ```
 
 ### Path segments {#path-segments}
@@ -163,8 +163,8 @@ function anything<Name extends string>(name: Name): Param<Name> {
 
 const article = path`/article/${anything("etc")}`;
 
-article.match("/article/10 Biggest Snouts"); // returns {etc: '10 Biggest Snouts'}
-article.match("/article/sci-fi/space-pigs"); // returns {etc: 'sci-fi/space-pigs'}
+article.match("/article/10 Biggest Snouts"); // returns { etc: "10 Biggest Snouts" }
+article.match("/article/sci-fi/space-pigs"); // returns { etc: "sci-fi/space-pigs" }
 ```
 
 :::danger
@@ -209,8 +209,8 @@ function int<Name extends string>(name: Name): Param<Name, number> {
 
 const user = path`/user/${int("id")}`;
 
-user.build({ id: 111 }); // returns '/user/111'
-user.build({ id: 222 }); // returns '/user/222'
+user.build({ id: 111 }); // returns "/user/111"
+user.build({ id: 222 }); // returns "/user/222"
 ```
 
 :::tip
@@ -235,7 +235,7 @@ an incorrect variable type with a parameter that does exist:
 ```ts no-transpile
 const user = path`/user/${int("id")}`;
 
-// TypeScript "knows" that a successful match will contain a number for 'id':
+// TypeScript "knows" that a successful match will contain a number for "id":
 
 const match = user.match("/user/111");
 
@@ -245,7 +245,7 @@ if (match) {
   console.log(match.nonexistent); // type error
 }
 
-// TypeScript "knows" that we need a number for 'id' when building the path:
+// TypeScript "knows" that we need a number for "id" when building the path:
 
 user.build({ id: 111 }); // no error
 user.build({ id: "111" }); // type error
@@ -254,7 +254,7 @@ user.build({}); // type error
 
 :::tip Try me!
 
-[Try this example in the TypeScript Playground](https://www.typescriptlang.org/play?#code/JYWwDg9gTgLgBAbwAoEMopAGjmFMAWAvnAGZQQhwDkAAgM4B2EArjAPTmsCmUAtLgSoAoISWYMAxjGAQGcYAxgAeAHIYucLgA8YXBgBM6cOjCgKA5gD4AFA3UAuOGpBcAlI9ToQq9dgbMQACMeS0QhODgoLhhmKDkEcIi4OxdMRIjtMEc2awAGAB8AbQBGXgBOAF0AHX0AKlc2bDY2OAADTNa4FAAbbogAdyMFXXMeY1MLI1lugE8-CDhurhR9CzgALx4ILjp00mgQPEc0czgAXlDWgBIEAFk8fAA6Ej7oaxPXQla0pJw0Oi4jkOMAk+HOoVwUABAElFNZgaDsMVcq4fnBCEIMUIJLITHBmACoOc-gRWmwCTw2DdhtYqMB9FRPq0RM04AAVGZgLgAZQkZjA8AARABrJiDQVwAh4LrGZgSCQ7OhibpwBFg-rAXpwHGKFAKGX+IJjEjQaj0qj2EQ6vFq4kUqCPNW08mEtjFd2MkTAEhweF4UGuMIRa0QJaPPrmP0gp70x4wCAAUS0kAYemkPWsrkDrKYmig5CgiRDYYjUdBj1j8YAqmAuVAAMIoAGZwMRVkwTkaHgFou40NccMQSNqx5MVNaYAmNOt35tlodrl5ntY1kcrm8-lC0UDOgSqXwfoaVNcfQGgLBIkmol0hlwfr4PRwQLMTWrBinAgaAT4S1Ce2PZ9X2sBB6Ucd1ikIGccwWbtoD-QkAJfbp9GA0DqHAqhILgdtOyXOD-0A5DgKw2dfhwxdYKgIA)
+[Try this example in the TypeScript Playground](https://www.typescriptlang.org/play?#code/JYWwDg9gTgLgBAbzgBQIZVSANHMqYAWcAvnAGZQQhwBEAAgM4B2EArjAPSXsCmUAtHkI0A3ACgxZVkwDGMYBCZxgTGAB4Acph5weADxg8mAEwZwGMKCoDmAPgAUTbQC44WkDwCUrtBhCbtHCZWEAAjPltEMTg4KB4YViglBGiYuCcPLFSY-TBXDnsABgAfAG0ARn4ATgBdAB1jACpPDiy08mgQfFd7dGtPOABeSIADABIEAFl8AgA6MgAbCGheqH7iEZwODjgRsk78EY6oLpgzVHSQ8Kg4VHOlFUNrPnNLG2zcdAYeHtOZAgGw0+UG+AElVPY-gQcOVCp42iRxMQJDJFBY4KxvjdBp9CCMOJi+BwJo97DRgMYaJ4NuIxNs4AAVACeYB4AGUZFYwPAaABrFgAdwYNDghHwt3MrBkMh4DAYUgWcChcAFwAWitRqlQKglwTCL32N3JlOcKLR8GVOMJUFmULJBKxHHKzqptOAZDgkPw-wGKRimoYEAWPFmS2sXpg-1mFNmMAgAFE9JAmEZ5KgFvZPJ4RHB6SxdFBKFBUgGgyGwxGozG4wBVMCsqAAYTuPEz2dzOxgLJ0fCLJbRZdDEHDUNmLBTemAFlT7fpXdZBb7yLpO2ZrI5XJ5-IgQpFYvgAp0KZ4xl1VwN0FoFJFAoIRjgoVYauMNlFd9xBFNYmts0fz-sSAUq4zrlCQs47PmvbQN+WK-k+CzGAByjGK4NAgSKxDgaK3aLtBP5-ghAGYTmc44VBUBAA)
 
 :::
 
