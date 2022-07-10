@@ -18,7 +18,7 @@
   },
   "type": "module",
   "main": "artifacts/dist/index.js",
-  "typings": "artifacts/dist/index.d.ts",
+  "types": "artifacts/dist/index.d.ts",
   "exports": {
     ".": "./artifacts/dist/index.js"
   },
