@@ -13,6 +13,11 @@ This utility type is useful for implementing [custom parameters] whose type is
 in some way based on the type of another parameter. An example is the `optional`
 parameters implemented by [`@snout/router-path-extras`].
 
+[`@snout/router-path-extras`]: https://snout.dev/router-path-extras
+[`arg`]: Param.mdx#type-variable-arg
+[`param`]: Param.mdx
+[custom parameters]: ../../guides/custom-parameters.mdx
+
 ```ts no-transpile
 import { Param, ParamArg } from "@snout/router-path";
 
@@ -25,10 +30,3 @@ type Arg = ParamArg<ParamA>; // the extracted Arg type is string | number
 [Try this example in the TypeScript Playground](https://www.typescriptlang.org/play?#code/JYWwDg9gTgLgBAbwAoEMopAGjq9ICCUA5gL5wBmUEIcA5AAIDOAdhAK4wD0VHAplAFowKGAAtaAKAkwAnmF440GfHAC8ivAB5aKWtkYwowZkTgAfOMzYgARvwB8cTpzgo4wvLxj84s+XDZGY1MUZjhCUzZmYAgwv15pOQUItQ1lYk1cZUc4XLz8-OdfUQVeAA9DFABjbwATcOJfJLhgRjgDIxNzS2s7KCA)
 
 :::
-
-<!-- References -->
-
-[`arg`]: Param.mdx#type-variable-arg
-[`param`]: Param.mdx
-[custom parameters]: ../../guides/custom-parameters.mdx
-[`@snout/router-path-extras`]: https://snout.dev/router-path-extras

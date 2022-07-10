@@ -9,6 +9,8 @@ hide_title: true
 
 The `Param` interface can be used to implement [custom route parameters].
 
+[custom route parameters]: ../../guides/custom-parameters.mdx
+
 ## Properties {#properties}
 
 ### `name` {#property-name}
@@ -23,12 +25,17 @@ readonly name: Name
 
 - [Type-safe parameter names] in the [Custom parameters] guide
 
+[custom parameters]: ../../guides/custom-parameters.mdx
+[type-safe parameter names]: ../../guides/custom-parameters.mdx#type-safe-parameter-names
+
 :::
 
 ### `exp` {#property-exp}
 
 The [regular expression] used to determine whether a segment (or segments) of a
 path match the parameter.
+
+[regular expression]: https://developer.mozilla.org/docs/Web/JavaScript/Guide/Regular_Expressions
 
 ```ts no-transpile
 readonly exp: RegExp
@@ -38,11 +45,16 @@ readonly exp: RegExp
 
 The expression **must** have exactly one [capturing group].
 
+[capturing group]: https://javascript.info/regexp-groups
+
 :::
 
 :::info See also
 
 - [Matching and parsing] in the [Custom parameters] guide
+
+[custom parameters]: ../../guides/custom-parameters.mdx
+[matching and parsing]: ../../guides/custom-parameters.mdx#matching-and-parsing
 
 :::
 
@@ -60,12 +72,17 @@ function format(arg: Arg): string;
 
 - [Formatting] in the [Custom parameters] guide
 
+[custom parameters]: ../../guides/custom-parameters.mdx
+[formatting]: ../../guides/custom-parameters.mdx#formatting
+
 :::
 
 #### Parameters {#method-format-parameters}
 
 Accepts a single argument - the value to format. The value must have a type
 matching the [`Arg`] type variable.
+
+[`arg`]: #type-variable-arg
 
 #### Return value {#method-format-return-value}
 
@@ -74,9 +91,15 @@ A formatted string representing the supplied value.
 The strings produced by `format` should match [`exp`], and the resulting
 [capturing group] content should be able to be parsed by [`parse`].
 
+[`exp`]: #property-exp
+[`parse`]: #method-parse
+[capturing group]: https://javascript.info/regexp-groups
+
 ### `parse` {#method-parse}
 
 Parse a successful match against [`exp`].
+
+[`exp`]: #property-exp
 
 ```ts no-transpile
 function parse(match: string): Arg;
@@ -85,6 +108,9 @@ function parse(match: string): Arg;
 :::info See also
 
 - [Matching and parsing] in the [Custom parameters] guide
+
+[custom parameters]: ../../guides/custom-parameters.mdx
+[matching and parsing]: ../../guides/custom-parameters.mdx#matching-and-parsing
 
 :::
 
@@ -97,14 +123,22 @@ against [`exp`].
 occur in a successful match of [`exp`] against the strings that are produced by
 [`format`].
 
+[`exp`]: #property-exp
+[`format`]: #method-format
+[capturing group]: https://javascript.info/regexp-groups
+
 #### Return value {#method-parse-return-value}
 
 The parsed value of the parameter. The value must have a type matching the
 [`Arg`] type variable.
 
+[`arg`]: #type-variable-arg
+
 ## Type variables {#type-variables}
 
 The `Param` type is a [generic] type:
+
+[generic]: https://www.typescriptlang.org/docs/handbook/2/generics.html
 
     Param<Name extends string, Arg = string>
 
@@ -112,15 +146,24 @@ The `Param` type is a [generic] type:
 
 - [Type safety] in the [Custom parameters] guide
 
+[custom parameters]: ../../guides/custom-parameters.mdx
+[type safety]: ../../guides/custom-parameters.mdx#type-safety
+
 :::
 
 ### `Name` {#type-variable-name}
 
 The parameter's [`name`] as a `string` [literal type].
 
+[`name`]: #property-name
+[literal type]: https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#literal-types
+
 :::info See also
 
 - [Type-safe parameter names] in the [Custom parameters] guide
+
+[custom parameters]: ../../guides/custom-parameters.mdx
+[type-safe parameter names]: ../../guides/custom-parameters.mdx#type-safe-parameter-names
 
 :::
 
@@ -130,6 +173,8 @@ The type of argument the parameter accepts.
 
 Leaving off the [`Arg`] type variable creates a `Param` where the [`Arg`] type
 is `string`, meaning that the following types are equivalent:
+
+[`arg`]: #type-variable-arg
 
 ```ts no-transpile
 import { Param } from "@snout/router-path";
@@ -142,22 +187,7 @@ type ParamA = Param<"param-name", string>;
 
 - [Type safety] in the [Custom parameters] guide
 
-:::
-
-<!-- References -->
-
-[`arg`]: #type-variable-arg
-[`exp`]: #property-exp
-[`format`]: #method-format
-[`name`]: #property-name
-[`parse`]: #method-parse
 [custom parameters]: ../../guides/custom-parameters.mdx
-[custom route parameters]: ../../guides/custom-parameters.mdx
-[formatting]: ../../guides/custom-parameters.mdx#formatting
-[matching and parsing]: ../../guides/custom-parameters.mdx#matching-and-parsing
 [type safety]: ../../guides/custom-parameters.mdx#type-safety
-[type-safe parameter names]: ../../guides/custom-parameters.mdx#type-safe-parameter-names
-[capturing group]: https://javascript.info/regexp-groups
-[generic]: https://www.typescriptlang.org/docs/handbook/2/generics.html
-[literal type]: https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#literal-types
-[regular expression]: https://developer.mozilla.org/docs/Web/JavaScript/Guide/Regular_Expressions
+
+:::

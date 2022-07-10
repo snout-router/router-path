@@ -10,6 +10,9 @@ hide_title: true
 The `PathPattern` interface is implemented by the [path pattern] objects that
 are created when using the [`path`] function.
 
+[`path`]: ../path.mdx
+[path pattern]: ../../guides/path-patterns.mdx
+
 ## Methods {#methods}
 
 ### `build` {#method-build}
@@ -30,10 +33,14 @@ parameters. The values must also be of the correct type for each parameter. When
 a parameter accepts `undefined` arguments, omitting the argument is also
 allowed.
 
+[path pattern]: ../../guides/path-patterns.mdx
+
 #### Return value {#method-build-return-value}
 
 A path string matching the [path pattern], with each of the parameters filled
 with a formatted version of the supplied argument.
+
+[path pattern]: ../../guides/path-patterns.mdx
 
 ### `match` {#method-match}
 
@@ -54,6 +61,8 @@ If the supplied path string matches the pattern, `match` will return an object
 with keys matching the names of the [path pattern]'s route parameters. The
 string arguments will be parsed into values of the appropriate type for each
 parameter.
+
+[path pattern]: ../../guides/path-patterns.mdx
 
 If the path does not match the pattern, `match` will return `undefined`.
 
@@ -77,6 +86,8 @@ A boolean value indicating whether the path matched the pattern or not.
 
 The `PathPattern` type is a [generic] type:
 
+[generic]: https://www.typescriptlang.org/docs/handbook/2/generics.html
+
     PathPattern<Params extends Array<Param<string, any>>>
 
 ### `Params` {#type-variable-params}
@@ -86,6 +97,9 @@ The type of parameters contained in the [path pattern].
 Typically, you would not need to manually specify this type variable, as the
 parameter types are automatically inferred when calling the [`path`] function to
 create path patterns:
+
+[`path`]: ../path.mdx
+[path pattern]: ../../guides/path-patterns.mdx
 
 ```ts no-transpile
 import { path } from "@snout/router-path";
@@ -98,9 +112,3 @@ const user = path`/user/${"id"}`; // user has a type of PathPattern<[Param<'id',
 [Try this example in the TypeScript Playground](https://www.typescriptlang.org/play?#code/JYWwDg9gTgLgBAbzAQxgCwL5wGZQiOAcgAEBnAOwgFcYB6PGgUygFoV1CAoTgYwnNLwqpZnAC8cdmgAGtYc1oASBIWAATQhmlxatOPKhw0yUnGRwYATzCM4EbHAAKqNM5gxm5ADwBtZ1GQQL1UNABo4QShgcgBzAD4AXTigA)
 
 :::
-
-<!-- References -->
-
-[`path`]: ../path.mdx
-[path pattern]: ../../guides/path-patterns.mdx
-[generic]: https://www.typescriptlang.org/docs/handbook/2/generics.html

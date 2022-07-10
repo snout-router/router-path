@@ -9,6 +9,8 @@ hide_title: true
 
 Produces a [`Param`] implementation from a supplied string or parameter.
 
+[`param`]: type/Param.mdx
+
 ```ts no-transpile
 function normalizeParam(p: ParamOrString): Param;
 ```
@@ -17,6 +19,8 @@ function normalizeParam(p: ParamOrString): Param;
 
 Accepts a single argument - either an existing [`Param`], or the name of a
 parameter as a string.
+
+[`param`]: type/Param.mdx
 
 ## Return value {#return-value}
 
@@ -27,16 +31,23 @@ A [`Param`] implementation:
 - String values will be converted to a basic string-based parameter with the
   supplied string becoming the [`name`] of the newly created [`Param`].
 
+[`name`]: type/Param.mdx#property-name
+[`param`]: type/Param.mdx
+
 ## Usage {#usage}
 
 Unless you are interested in implementing [custom parameters], chances are you
 do not need to use this function at all.
 
-However, if you're implementing [custom parameters] that accept another
-parameter as input, and you want to be able to accept strings as parameters in
-the same way that [`path`] does, then `normalizeParam` is what you need. This is
-the same function used internally when creating path patterns to convert any
-parameters specified as strings into full [`Param`] implementations:
+However, if you're implementing custom parameters that accept another parameter
+as input, and you want to be able to accept strings as parameters in the same
+way that [`path`] does, then `normalizeParam` is what you need. This is the same
+function used internally when creating path patterns to convert any parameters
+specified as strings into full [`Param`] implementations:
+
+[`param`]: type/Param.mdx
+[`path`]: path.mdx
+[custom parameters]: ../guides/custom-parameters.mdx
 
 ```ts no-transpile
 import { path } from "@snout/router-path";
@@ -47,10 +58,4 @@ const user = path`/user/${"id"}`; // internally, 'id' is converted to a Param us
 A real-world example that uses `normalizeParam` are the `optional` parameters
 implemented by [`@snout/router-path-extras`].
 
-<!-- References -->
-
-[`name`]: type/Param.mdx#property-name
-[`param`]: type/Param.mdx
-[`path`]: path.mdx
-[custom parameters]: ../guides/custom-parameters.mdx
 [`@snout/router-path-extras`]: https://snout.dev/router-path-extras

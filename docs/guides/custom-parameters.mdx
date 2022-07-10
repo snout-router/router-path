@@ -9,6 +9,8 @@ parameters that consume a single path segment. If you need more complicated
 behavior, you can either bring in an additional dependency like
 [`@snout/router-path-extras`], or you can implement your own custom parameters.
 
+[`@snout/router-path-extras`]: https://snout.dev/router-path-extras
+
 :::tip
 
 If you've implemented custom parameters for **Snout Router Path**, we'd love to
@@ -23,19 +25,26 @@ appearing.
 When matching a path against a pattern, the individual parameters contribute to
 deciding whether the overall path matches the pattern or not. The [`exp`]
 property of a route parameter is a [regular expression] that is used to match a
-_portion_ of the path. This expression **must** have exactly one [capturing
-group].
+_portion_ of the path. This expression **must** have exactly one
+[capturing group].
 
-When a path matches a pattern, the content captured by [`exp`]'s [capturing
-group] gets passed to [`parse`] for further parsing. [`parse`] itself is not
-restricted to returning strings; it's possible to return any type of value you
-want. JavaScript will obviously not complain about the return type. [TypeScript]
-will expect you to honor the type variables used in the specified [`Param`]
-type.
+When a path matches a pattern, the content captured by [`exp`]'s
+[capturing group] gets passed to [`parse`] for further parsing. [`parse`] itself
+is not restricted to returning strings; it's possible to return any type of
+value you want. JavaScript will obviously not complain about the return type.
+[TypeScript] will expect you to honor the type variables used in the specified
+[`Param`] type.
 
 These features work together to make it possible to implement just about any
 type of parameter you can imagine. As an example, consider parameters based on
 integers instead of strings:
+
+[`exp`]: ../api/type/Param.mdx#property-exp
+[`param`]: ../api/type/Param.mdx
+[`parse`]: ../api/type/Param.mdx#property-parse
+[capturing group]: https://javascript.info/regexp-groups
+[regular expression]: https://developer.mozilla.org/docs/Web/JavaScript/Guide/Regular_Expressions
+[typescript]: https://www.typescriptlang.org/
 
 ```ts
 import { Param, path } from "@snout/router-path";
@@ -62,6 +71,8 @@ Before implementing your own custom parameters, be sure to check out the
 [`@snout/router-path-extras`] package, which has some commonly desired parameter
 type implementations - including the integer parameters from the example above.
 
+[`@snout/router-path-extras`]: https://snout.dev/router-path-extras
+
 :::
 
 ### Parameter affixes {#parameter-affixes}
@@ -70,6 +81,10 @@ On a successful path match, only the [capturing group] content from [`exp`]
 actually gets passed to [`parse`]. This means it's possible to consume prefixes
 and suffixes with [`exp`], without having to deal with them in [`parse`] as
 well:
+
+[`exp`]: ../api/type/Param.mdx#property-exp
+[`parse`]: ../api/type/Param.mdx#property-parse
+[capturing group]: https://javascript.info/regexp-groups
 
 ```ts
 import { Param, path } from "@snout/router-path";
@@ -107,6 +122,8 @@ documents.match("/documents/lang-ko-KR"); // returns {lang: 'ko-KR'}
 Although it's common to use `/` as a separator for path segments, it's possible
 to use [`exp`] to implement paths that use other separators:
 
+[`exp`]: ../api/type/Param.mdx#property-exp
+
 ```ts
 import { Param, path } from "@snout/router-path";
 
@@ -129,6 +146,8 @@ roles.match("user.snouty.roles"); // returns {username: 'snouty'}
 
 Parameters typically consume a single path segment, but this is actually
 determined by [`exp`], which can be made to consume multiple path segments:
+
+[`exp`]: ../api/type/Param.mdx#property-exp
 
 ```ts
 import { Param, path } from "@snout/router-path";
@@ -157,6 +176,8 @@ string parameters instead of route parameters, or check out the
 type implementations - including "repeating" parameter types such as `any` and
 `some`.
 
+[`@snout/router-path-extras`]: https://snout.dev/router-path-extras
+
 :::
 
 ## Formatting {#formatting}
@@ -166,10 +187,13 @@ building the overall path by formatting the arguments they are passed. No matter
 what type of arguments a parameter accepts, it must always be able to format an
 argument into a string that makes up a _portion_ of a path.
 
-For example, the integer-based parameters used as an example in the [Matching
-and Parsing] section are also responsible for formatting the numbers they are
-passed when building a path that uses them. They do so by implementing the
-[`format`] method:
+For example, the integer-based parameters used as an example in the
+[Matching and Parsing] section are also responsible for formatting the numbers
+they are passed when building a path that uses them. They do so by implementing
+the [`format`] method:
+
+[`format`]: ../api/type/Param.mdx##method-format
+[matching and parsing]: #matching-and-parsing
 
 ```ts
 import { Param, path } from "@snout/router-path";
@@ -204,6 +228,9 @@ custom parameters by implementing the [`Param`] interface correctly. For
 instance, using the integer parameters from previous examples, [TypeScript] can
 warn us when we try to use a parameter that does not exist, or if we try to use
 an incorrect variable type with a parameter that does exist:
+
+[`param`]: ../api/type/Param.mdx
+[typescript]: https://www.typescriptlang.org/
 
 ```ts no-transpile
 const user = path`/user/${int("id")}`;
@@ -243,6 +270,12 @@ The best way to ensure that custom parameters have the correct
 [`Name`][name type] type associated with them, is to use a [generic] function to
 create them:
 
+[`param`]: ../api/type/Param.mdx
+[generic]: https://www.typescriptlang.org/docs/handbook/2/generics.html
+[literal type]: https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#literal-types
+[name type]: ../api/type/Param.mdx##type-variable-name
+[typescript]: https://www.typescriptlang.org/
+
 ```ts no-transpile
 import { Param, path } from "@snout/router-path";
 
@@ -263,6 +296,9 @@ const article = path`/article/${category}/${id}`;
 
 It's also possible to directly create one-off parameters with [literal type]
 names in various ways using [TypeScript] syntax:
+
+[literal type]: https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#literal-types
+[typescript]: https://www.typescriptlang.org/
 
 ```ts no-transpile
 import { Param, path } from "@snout/router-path";
@@ -285,19 +321,3 @@ const id = {
 
 const article = path`/article/${category}/${id}`;
 ```
-
-<!-- References -->
-
-[`arg`]: ../api/type/Param.mdx#type-variable-arg
-[`exp`]: ../api/type/Param.mdx#property-exp
-[`format`]: ../api/type/Param.mdx##method-format
-[`param`]: ../api/type/Param.mdx
-[`parse`]: ../api/type/Param.mdx#property-parse
-[matching and parsing]: #matching-and-parsing
-[name type]: ../api/type/Param.mdx##type-variable-name
-[`@snout/router-path-extras`]: https://snout.dev/router-path-extras
-[capturing group]: https://javascript.info/regexp-groups
-[generic]: https://www.typescriptlang.org/docs/handbook/2/generics.html
-[literal type]: https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#literal-types
-[regular expression]: https://developer.mozilla.org/docs/Web/JavaScript/Guide/Regular_Expressions
-[typescript]: https://www.typescriptlang.org/

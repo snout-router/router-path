@@ -10,6 +10,8 @@ hide_title: true
 A utility type for use when you need to be able to accept any valid [`Param`]
 type or a string.
 
+[`param`]: Param.mdx
+
 ```ts no-transpile
 import { ParamOrString } from "@snout/router-path";
 ```
@@ -19,7 +21,3 @@ Functionally equivalent to:
 ```ts no-transpile
 Param<string, any> | string
 ```
-
-<!-- References -->
-
-[`param`]: Param.mdx

@@ -52,8 +52,11 @@ package manager:
 
 ## Step 2: Create a path pattern {#creation}
 
-To create a path pattern, call the [`path`] function by using it in a [tagged
-template literal]:
+To create a path pattern, call the [`path`] function by using it in a
+[tagged template literal]:
+
+[`path`]: ../api/path.mdx
+[tagged template literal]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Template_literals#tagged_templates
 
 ```ts no-transpile
 import { path } from "@snout/router-path";
@@ -87,6 +90,8 @@ This embedded example doesn't have great [TypeScript] support.
 
 <Link to={GETTING_STARTED_URL}>Open the full sandbox</Link> for a better preview.
 
+[typescript]: https://www.typescriptlang.org/
+
 :::
 
 ## Step 4: Enjoy TypeScript goodness! {#type-safety}
@@ -95,6 +100,8 @@ Using [TypeScript]? One of the great things about **Snout Router Path** is the
 way it infers type information for your path patterns. You can have more
 confidence when matching and building paths, because [TypeScript] will warn you
 when you're using your patterns incorrectly:
+
+[typescript]: https://www.typescriptlang.org/
 
 ```ts no-transpile
 // TypeScript "knows" that a successful match will contain an 'id':
@@ -131,11 +138,7 @@ start:
 - Check out [`@snout/router-path-extras`] for some commonly desired parameter
   type implementations.
 
-<!-- References -->
-
-[`path`]: ../api/path.mdx
+[`@snout/router-path-extras`]: https://snout.dev/router-path-extras
 [custom parameters]: custom-parameters.mdx
 [path patterns]: path-patterns.mdx
-[`@snout/router-path-extras`]: https://snout.dev/router-path-extras
-[tagged template literal]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Template_literals#tagged_templates
 [typescript]: https://www.typescriptlang.org/

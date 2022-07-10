@@ -18,10 +18,15 @@ In this guide, we'll cover:
 - How to take a set of arguments, and turn them back into a path that matches
   your pattern
 
+[`path`]: ../api/path.mdx
+
 ## Creating patterns {#creating-patterns}
 
-To create a path pattern, call the [`path`] function by using it in a [tagged
-template literal]:
+To create a path pattern, call the [`path`] function by using it in a
+[tagged template literal]:
+
+[`path`]: ../api/path.mdx
+[tagged template literal]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Template_literals#tagged_templates
 
 ```ts no-transpile
 import { path } from "@snout/router-path";
@@ -59,6 +64,9 @@ need to invent a special syntax for defining path patterns. The _JavaScript
 language itself_ already does the work of parsing your path pattern into
 parameters and literal text segments.
 
+[supported by all modern browsers]: https://caniuse.com/template-literals
+[tagged template literal]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Template_literals#tagged_templates
+
 :::
 
 ### Parameters {#parameters}
@@ -74,10 +82,10 @@ const imagesByCategory = path`/images/${"category"}`;
 ```
 
 We'll go into more detail about exactly how these simple parameters behave in
-the sections on [simple parameter matching] and [building with simple
-parameters], but for now all you need to know is that using a string is a
-short-hand method for creating a simple parameter, with the string becoming the
-_name_ of the new parameter.
+the sections on [simple parameter matching] and
+[building with simple parameters], but for now all you need to know is that
+using a string is a short-hand method for creating a simple parameter, with the
+string becoming the _name_ of the new parameter.
 
 In order to keep **Snout Router Path** light and easy to maintain, only these
 simple parameters are included out of the box. In most cases, they should be all
@@ -90,6 +98,12 @@ There's also a separate [`@snout/router-path-extras`] package, which has some
 commonly desired parameter type implementations. When you use [custom parameter]
 implementations like the ones in this package, you typically need to call a
 separate function to create the parameters:
+
+[`@snout/router-path-extras`]: https://snout.dev/router-path-extras
+[building with simple parameters]: #building-with-simple-parameters
+[custom parameter]: custom-parameters.mdx
+[custom parameters]: custom-parameters.mdx
+[simple parameter matching]: #simple-parameter-matching
 
 ```ts no-transpile
 import { path } from "@snout/router-path";
@@ -140,8 +154,10 @@ const servicesWithLabel = path`/services/with-${"label"}-label`;
 
 :::tip
 
-Parameter affixes can also be implemented in custom parameters. See the [custom
-parameters guide section on parameter affixes] to see how.
+Parameter affixes can also be implemented in custom parameters. See the
+[custom parameters guide section on parameter affixes] to see how.
+
+[custom parameters guide section on parameter affixes]: custom-parameters.mdx#parameter-affixes
 
 :::
 
@@ -170,6 +186,9 @@ You can create a path patterns with no parameters by using no substitutions. But
 you still need to call the [`path`] function using [tagged template literal]
 syntax:
 
+[`path`]: ../api/path.mdx
+[tagged template literal]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Template_literals#tagged_templates
+
 ```ts no-transpile
 import { path } from "@snout/router-path";
 
@@ -182,6 +201,8 @@ const faq = path`/pages/faq`;
 You can check if a path matches your path pattern by using the [`match`] method.
 If the path matches, then [`match`] will parse the path into a set of arguments.
 If it does not match, then [`match`] will return `undefined`:
+
+[`match`]: ../api/type/PathPattern#method-match
 
 ```ts no-transpile
 import { path } from "@snout/router-path";
@@ -198,6 +219,8 @@ user.match("/settings/notifications");
 If you only want to know whether a pattern matches a path, but you don't need
 the parsed arguments, you can use the simpler [`test`] method, which returns a
 boolean indicating whether the path matched instead:
+
+[`test`]: ../api/type/PathPattern#method-test
 
 ```ts no-transpile
 user.test("/user/111"); // returns true
@@ -256,6 +279,8 @@ Once you've checked that a path does in fact match your pattern, the
 [TypeScript] compiler will warn you if you're using a nonexistent argument, and
 will also know the types of your arguments, preventing you from using them
 incorrectly:
+
+[typescript]: https://www.typescriptlang.org/
 
 ```ts no-transpile
 import { path } from "@snout/router-path";
@@ -322,8 +347,10 @@ user.match("/user/");
 :::tip
 
 Using `/` as a path separator is definitely the most common use case, but
-**Snout Router Path** can be used with other separators. See the [custom
-parameters guide section on path separators] to see how.
+**Snout Router Path** can be used with other separators. See the
+[custom parameters guide section on path separators] to see how.
+
+[custom parameters guide section on path separators]: custom-parameters.mdx#path-separators
 
 :::
 
@@ -340,12 +367,17 @@ group.match("/group/111");
 If you want parameters that produce other types of arguments, then you'll need
 to look into [custom parameters].
 
+[custom parameters]: custom-parameters.mdx
+
 ### Custom parameter matching {#custom-parameter-matching}
 
 If you're using [custom parameters] in your patterns, the type and content of
 the arguments you'll get for successful matches is largely up to the
 implementation of each parameter. Some [custom parameter] implementations just
 produce argument types other than strings:
+
+[custom parameter]: custom-parameters.mdx
+[custom parameters]: custom-parameters.mdx
 
 ```ts no-transpile
 import { path } from "@snout/router-path";
@@ -360,6 +392,8 @@ job.match("/job/111");
 But [custom parameter] implementations also have the power to transform the
 arguments in just about any way. So check their individual documentation for
 more specific information on how they behave when matching paths:
+
+[custom parameter]: custom-parameters.mdx
 
 ```ts no-transpile
 import { path } from "@snout/router-path";
@@ -380,6 +414,8 @@ pachyderms.match("/pachyderms/with/snouts");
 your path pattern to match against URL paths, make sure you decode the path
 with [`decodeURIComponent`] before matching:
 
+[`decodeuricomponent`]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/decodeURIComponent
+
 ```ts no-transpile
 import { path } from "@snout/router-path";
 
@@ -394,6 +430,8 @@ article.match(decodeURIComponent(url.pathname));
 
 You can create a path from your pattern by using the [`build`] method. You'll
 need to supply appropriate arguments to build with:
+
+[`build`]: ../api/type/PathPattern#method-build
 
 ```ts no-transpile
 import { path } from "@snout/router-path";
@@ -513,6 +551,8 @@ dashboard.build({ bonus: "pachyderm" });
 If you're using [TypeScript], the compiler will warn you if you're using the
 wrong arguments when building paths:
 
+[typescript]: https://www.typescriptlang.org/
+
 ```ts no-transpile
 import { path } from "@snout/router-path";
 import { some } from "@snout/router-path-extras";
@@ -545,6 +585,8 @@ string arguments. If you're using [TypeScript], this will be enforced at compile
 time. If you're using vanilla JavaScript, you'll need to be careful and remember
 to do string conversion yourself:
 
+[typescript]: https://www.typescriptlang.org/
+
 ```ts no-transpile
 import { path } from "@snout/router-path";
 
@@ -574,6 +616,8 @@ non-string or missing arguments. Simple parameters are optimized for
 [TypeScript] usage, and purposefully don't do any run-time checks that would be
 redundant in a [TypeScript] environment.
 
+[typescript]: https://www.typescriptlang.org/
+
 :::
 
 ### Building with custom parameters {#building-with-custom-parameters}
@@ -582,6 +626,9 @@ If you're using [custom parameters] in your patterns, the type and content of
 the arguments you'll need to supply when building paths is largely up to the
 implementation of each parameter. Some [custom parameter] implementations just
 accept argument types other than strings:
+
+[custom parameter]: custom-parameters.mdx
+[custom parameters]: custom-parameters.mdx
 
 ```ts no-transpile
 import { path } from "@snout/router-path";
@@ -597,6 +644,8 @@ But [custom parameter] implementations also have the power to accept just about
 any type of argument, or even allow arguments to be omitted entirely. So check
 their individual documentation for more specific information on how they behave
 when building paths:
+
+[custom parameter]: custom-parameters.mdx
 
 ```ts no-transpile
 import { path } from "@snout/router-path";
@@ -616,6 +665,8 @@ for building your URLs, you may need to handle this yourself. Thankfully, the
 standard [URL] implementation available in most JavaScript environments handles
 the encoding for you:
 
+[url]: https://developer.mozilla.org/docs/Web/API/URL
+
 ```ts no-transpile
 import { path } from "@snout/router-path";
 
@@ -627,22 +678,3 @@ url.pathname = article.build({ name: "10 Biggest Snouts" });
 // returns 'https://snout.dev/article/10%20Biggest%20Snouts'
 url.toString();
 ```
-
-<!-- References -->
-
-[`build`]: ../api/type/PathPattern#method-build
-[`match`]: ../api/type/PathPattern#method-match
-[`path`]: ../api/path.mdx
-[`test`]: ../api/type/PathPattern#method-test
-[building with simple parameters]: #building-with-simple-parameters
-[custom parameter]: custom-parameters.mdx
-[custom parameters guide section on parameter affixes]: custom-parameters.mdx#parameter-affixes
-[custom parameters guide section on path separators]: custom-parameters.mdx#path-separators
-[custom parameters]: custom-parameters.mdx
-[simple parameter matching]: #simple-parameter-matching
-[`@snout/router-path-extras`]: https://snout.dev/router-path-extras
-[`decodeuricomponent`]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/decodeURIComponent
-[supported by all modern browsers]: https://caniuse.com/template-literals
-[tagged template literal]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Template_literals#tagged_templates
-[typescript]: https://www.typescriptlang.org/
-[url]: https://developer.mozilla.org/docs/Web/API/URL

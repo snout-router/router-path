@@ -11,14 +11,20 @@ Create a route path pattern.
 
 ## Parameters {#parameters}
 
-`path` is not called with traditional parameters, but with [tagged template
-literals]. The "substitutions" in the literal can be either [`Param`] objects,
-or strings, which get automatically converted into parameters via
-[`normalizeParam`].
+`path` is not called with traditional parameters, but with
+[tagged template literals]. The "substitutions" in the literal can be either
+[`Param`] objects, or strings, which get automatically converted into parameters
+via [`normalizeParam`].
+
+[`normalizeparam`]: normalizeParam.mdx
+[`param`]: type/Param.mdx
+[tagged template literals]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Template_literals#tagged_templates
 
 ## Return value {#return-value}
 
 A [`PathPattern`] object.
+
+[`pathpattern`]: type/PathPattern.mdx
 
 ## Usage {#usage}
 
@@ -30,10 +36,3 @@ const user = path`/user/${"id"}`;
 user.match("/user/111"); // returns {id: '111'}
 user.build({ id: "111" }); // returns '/user/111'
 ```
-
-<!-- References -->
-
-[`normalizeparam`]: normalizeParam.mdx
-[`param`]: type/Param.mdx
-[`pathpattern`]: type/PathPattern.mdx
-[tagged template literals]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Template_literals#tagged_templates

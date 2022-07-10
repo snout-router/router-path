@@ -14,6 +14,12 @@ This type is useful for implementing [custom parameters] where one of the inputs
 is another parameter that can also be expressed as a string. An example is the
 `optional` parameters implemented by [`@snout/router-path-extras`].
 
+[`@snout/router-path-extras`]: https://snout.dev/router-path-extras
+[`normalizeparam`]: ../normalizeParam.mdx
+[`param`]: Param.mdx
+[custom parameters]: ../../guides/custom-parameters.mdx
+[literal type]: https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#literal-types
+
 ```ts no-transpile
 import { NormalizeParam, Param } from "@snout/router-path";
 
@@ -28,10 +34,3 @@ type NormalizedB = NormalizeParam<"b">; // NormalizedB is Param<'b', string>
 [Try this example in the TypeScript Playground](https://www.typescriptlang.org/play?#code/JYWwDg9gTgLgBAbwHLRAQwDbAF4FMAKaUaIANHIcSAL5wBmUEIcA5AAIDOAdhAK4wB6Rv1xQAtGDQwAFiwBQcmAE8wuCkRIBBOAF51VADws0Lcl14gARqIB8C5argoo6LHgAm2vc9c4CGkANKLRs4AQEnVEw-TzhgDn0SIxMzC2soOwc1H2iPACFdSJdc-0MWSxZQuGrwot98uITgwPLTOA4YKGAuAHMbIA)
 
 :::
-
-<!-- References -->
-
-[`normalizeparam`]: ../normalizeParam.mdx
-[`param`]: Param.mdx
-[`@snout/router-path-extras`]: https://snout.dev/router-path-extras
-[literal type]: https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#literal-types
