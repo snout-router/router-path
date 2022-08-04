@@ -1,7 +1,7 @@
 {
   "private": true,
   "dependencies": {
-    "@snout/docusaurus-config": "^5.7.0",
+    "@snout/docusaurus-config": "^6.0.0",
     "@tsconfig/docusaurus": "^1.0.6",
     "clsx": "^1.1.1",
     "react": "^17.0.2",
