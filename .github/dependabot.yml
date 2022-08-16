@@ -1,20 +1,21 @@
+# DO NOT EDIT - This file is managed by snout-router/repos.
 version: 2
 updates:
-- package-ecosystem: github-actions
-  directory: /
-  schedule:
-    interval: daily
-  reviewers:
-  - snout-router/dependabot-reviewers
-- package-ecosystem: npm
-  directory: /
-  schedule:
-    interval: daily
-  reviewers:
-  - snout-router/dependabot-reviewers
-- package-ecosystem: npm
-  directory: /website
-  schedule:
-    interval: daily
-  reviewers:
-  - snout-router/dependabot-reviewers
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    reviewers:
+      - snout-router/dependabot-reviewers
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    reviewers:
+      - snout-router/dependabot-reviewers
+  - package-ecosystem: npm
+    directory: /website
+    schedule:
+      interval: weekly
+    reviewers:
+    - snout-router/dependabot-reviewers
