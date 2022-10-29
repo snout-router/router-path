@@ -1,4 +1,4 @@
-import { Param, path } from "../../src/main";
+import { Param, path } from "../../src/main.js";
 
 describe("path()", () => {
   describe("path.match()", () => {

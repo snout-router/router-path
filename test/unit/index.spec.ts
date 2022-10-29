@@ -1,5 +1,5 @@
-import * as index from "../../src/index";
-import { normalizeParam, path } from "../../src/main";
+import * as index from "../../src/index.js";
+import { normalizeParam, path } from "../../src/main.js";
 
 describe("module index", () => {
   it("should provide access to normalizeParam()", () => {

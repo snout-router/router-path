@@ -1,5 +1,5 @@
-import { NormalizeParam, Param } from "../../../src/main";
-import { hasType } from "../../helpers";
+import { NormalizeParam, Param } from "../../../src/main.js";
+import { hasType } from "../../helpers.js";
 
 describe("NormalizeParam", () => {
   it("should convert string types to Param types", () => {

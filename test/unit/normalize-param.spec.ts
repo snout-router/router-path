@@ -1,4 +1,4 @@
-import { normalizeParam, Param } from "../../src/main";
+import { normalizeParam, Param } from "../../src/main.js";
 
 describe("normalizeParam()", () => {
   it("should return Param objects unmodified", () => {

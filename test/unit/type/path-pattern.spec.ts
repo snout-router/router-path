@@ -1,4 +1,4 @@
-import { path } from "../../../src/main";
+import { path } from "../../../src/main.js";
 
 describe("PathPattern", () => {
   it("should not allow any properties to be modified", () => {

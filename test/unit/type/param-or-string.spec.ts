@@ -1,5 +1,5 @@
-import { Param, ParamOrString } from "../../../src/main";
-import { hasType } from "../../helpers";
+import { Param, ParamOrString } from "../../../src/main.js";
+import { hasType } from "../../helpers.js";
 
 describe("ParamOrString", () => {
   const a: Param<"a"> = {

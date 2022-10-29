@@ -1,5 +1,5 @@
-import { AnyParam, Param } from "../../../src/main";
-import { hasType } from "../../helpers";
+import { AnyParam, Param } from "../../../src/main.js";
+import { hasType } from "../../helpers.js";
 
 describe("AnyParam", () => {
   const a: Param<"a"> = {

@@ -1,4 +1,4 @@
-import { Param } from "../../../src/main";
+import { Param } from "../../../src/main.js";
 
 describe("Param", () => {
   it("should not allow any properties to be modified", () => {

@@ -8,4 +8,4 @@ export {
   ParamOrString,
   path,
   PathPattern,
-} from "./main";
+} from "./main.js";

@@ -1,3 +1,5 @@
+export NODE_OPTIONS := --experimental-vm-modules --redirect-warnings=artifacts/node-warnings
+
 JS_SIZE_LIMIT_REQ += artifacts/dist
 
 ################################################################################
