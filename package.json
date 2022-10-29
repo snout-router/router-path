@@ -20,7 +20,11 @@
   "main": "artifacts/dist/index.js",
   "types": "artifacts/dist/index.d.ts",
   "exports": {
-    ".": "./artifacts/dist/index.js"
+    ".": {
+      "types": "./artifacts/dist/index.d.ts",
+      "import": "./artifacts/dist/index.js",
+      "default": "./artifacts/dist/index.js"
+    }
   },
   "sideEffects": false,
   "files": [
