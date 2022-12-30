@@ -5,7 +5,7 @@
 [![Build status][badge-build-image]][badge-build-link]
 [![Test coverage][badge-coverage-image]][badge-coverage-link]
 
-[badge-build-image]: https://img.shields.io/github/workflow/status/snout-router/router-path/CI?style=for-the-badge
+[badge-build-image]: https://img.shields.io/github/actions/workflow/status/snout-router/router-path/ci.yml?branch=main&style=for-the-badge
 [badge-build-link]: https://github.com/snout-router/router-path/actions/workflows/ci.yml
 [badge-bundle-image]: https://img.shields.io/bundlephobia/minzip/@snout/router-path?style=for-the-badge
 [badge-bundle-link]: https://bundlephobia.com/result?p=@snout/router-path
