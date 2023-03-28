@@ -5,8 +5,8 @@ module.exports = createConfig({
   title: "Snout Router Path",
   redirects: [
     {
-      from: "/api",
-      to: "/api/path",
+      from: "/guides/getting-started",
+      to: "/getting-started",
     },
   ],
   navbarItems: [
@@ -21,7 +21,7 @@ module.exports = createConfig({
       position: "right",
     },
     {
-      to: "api/path",
+      to: "api",
       label: "API",
       position: "right",
     },
@@ -36,7 +36,7 @@ module.exports = createConfig({
         },
         {
           label: "API reference",
-          to: "api/path",
+          to: "api",
         },
       ],
     },
