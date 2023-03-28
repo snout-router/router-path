@@ -1,3 +1,7 @@
+---
+sidebar_position: 0
+---
+
 # Path patterns
 
 A _path pattern_ is a way to express the structure that a _path_ must take in
@@ -14,14 +18,14 @@ In this guide, we'll cover:
 - How to take a set of arguments, and turn them back into a path that matches
   your pattern
 
-[`path`]: ../api/path.mdx
+[`path`]: ../api/function/path.mdx
 
 ## Creating patterns {#creating-patterns}
 
 To create a path pattern, call the [`path`] function by using it in a
 [tagged template literal]:
 
-[`path`]: ../api/path.mdx
+[`path`]: ../api/function/path.mdx
 [tagged template literal]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Template_literals#tagged_templates
 
 ```ts no-transpile
@@ -182,7 +186,7 @@ You can create a path patterns with no parameters by using no substitutions. But
 you still need to call the [`path`] function using [tagged template literal]
 syntax:
 
-[`path`]: ../api/path.mdx
+[`path`]: ../api/function/path.mdx
 [tagged template literal]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Template_literals#tagged_templates
 
 ```ts no-transpile

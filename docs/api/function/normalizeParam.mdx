@@ -9,7 +9,7 @@ hide_title: true
 
 Produces a [`Param`] implementation from a supplied string or parameter.
 
-[`param`]: type/Param.mdx
+[`param`]: ../type/Param.mdx
 
 ```ts no-transpile
 function normalizeParam(p: ParamOrString): Param;
@@ -20,7 +20,7 @@ function normalizeParam(p: ParamOrString): Param;
 Accepts a single argument - either an existing [`Param`], or the name of a
 parameter as a string.
 
-[`param`]: type/Param.mdx
+[`param`]: ../type/Param.mdx
 
 ## Return value {#return-value}
 
@@ -31,8 +31,8 @@ A [`Param`] implementation:
 - String values will be converted to a basic string-based parameter with the
   supplied string becoming the [`name`] of the newly created [`Param`].
 
-[`name`]: type/Param.mdx#property-name
-[`param`]: type/Param.mdx
+[`name`]: ../type/Param.mdx#property-name
+[`param`]: ../type/Param.mdx
 
 ## Usage {#usage}
 
@@ -45,9 +45,9 @@ way that [`path`] does, then `normalizeParam` is what you need. This is the same
 function used internally when creating path patterns to convert any parameters
 specified as strings into full [`Param`] implementations:
 
-[`param`]: type/Param.mdx
+[`param`]: ../type/Param.mdx
 [`path`]: path.mdx
-[custom parameters]: ../guides/custom-parameters.mdx
+[custom parameters]: ../../guides/custom-parameters.mdx
 
 ```ts no-transpile
 import { path } from "@snout/router-path";
