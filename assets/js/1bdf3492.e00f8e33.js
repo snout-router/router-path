@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk=self.webpackChunk||[]).push([[287],{7448:e=>{e.exports=JSON.parse('{"title":"API reference","slug":"/api","permalink":"/router-path/api","navigation":{"previous":{"title":"Custom parameters","permalink":"/router-path/guides/custom-parameters"},"next":{"title":"Functions","permalink":"/router-path/api/function"}}}')}}]);
