@@ -11,7 +11,7 @@ module.exports = createConfig({
   ],
   navbarItems: [
     {
-      to: "guides/getting-started",
+      to: "getting-started",
       label: "Getting started",
       position: "right",
     },

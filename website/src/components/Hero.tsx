@@ -18,7 +18,7 @@ export default function Hero() {
         <div className={styles.buttons}>
           <Link
             className="button button--outline button--secondary button--lg"
-            to={useBaseUrl("guides/getting-started")}
+            to={useBaseUrl("getting-started")}
           >
             Get started
           </Link>

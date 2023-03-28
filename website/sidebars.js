@@ -1,15 +1,18 @@
 module.exports = {
   docs: [
     {
+      type: "doc",
+      id: "getting-started",
+    },
+    {
       type: "category",
       collapsed: false,
       label: "Guides",
-      items: [
-        "guides/index",
-        "guides/getting-started",
-        "guides/path-patterns",
-        "guides/custom-parameters",
-      ],
+      link: {
+        type: "doc",
+        id: "guides/guides",
+      },
+      items: ["guides/path-patterns", "guides/custom-parameters"],
     },
     {
       type: "category",
