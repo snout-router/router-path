@@ -46,7 +46,7 @@
     "@snout/eslint-config": "^3.2.2",
     "@snout/jest-config": "^3.0.0",
     "@snout/tsconfig": "^3.0.0",
-    "prettier": "^2.7.1",
+    "prettier": "^3.0.0",
     "prettier-plugin-organize-imports": "^3.0.0",
     "size-limit": "^8.0.0",
     "typescript": "^4.8.4"
