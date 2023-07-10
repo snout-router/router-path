@@ -9,7 +9,7 @@
   },
   "devDependencies": {
     "@snout/eslint-config-react": "^2.0.4",
-    "prettier": "^2.7.1",
+    "prettier": "^3.0.0",
     "prettier-plugin-organize-imports": "^3.0.0"
   },
   "browserslist": {
