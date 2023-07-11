@@ -2,14 +2,14 @@
   "private": true,
   "dependencies": {
     "@snout/docusaurus-config": "^6.0.0",
-    "@tsconfig/docusaurus": "^1.0.6",
+    "@tsconfig/docusaurus": "^2.0.0",
     "clsx": "^1.1.1",
     "react": "^17.0.2",
     "typescript": "^5.0.2"
   },
   "devDependencies": {
     "@snout/eslint-config-react": "^2.0.4",
-    "prettier": "^2.7.1",
+    "prettier": "^3.0.0",
     "prettier-plugin-organize-imports": "^3.0.0"
   },
   "browserslist": {

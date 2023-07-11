@@ -4,7 +4,7 @@ import { escape } from "@snout/regexp";
 export type AnyParam = Param<string, any>;
 
 export function normalizeParam<P extends ParamOrString>(
-  p: P
+  p: P,
 ): NormalizeParam<P> {
   if (typeof p === "string") {
     // eslint-disable-next-line @typescript-eslint/consistent-type-assertions

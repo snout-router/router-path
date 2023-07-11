@@ -147,34 +147,34 @@ describe("path()", () => {
       const subject = path`/a/${"p1"}/b/${"p2"}/c`;
 
       expect(subject.build({ p1: "x", p2: "y", ignored: "ignored" })).toBe(
-        "/a/x/b/y/c"
+        "/a/x/b/y/c",
       );
       expect(subject.build({ p1: "y", p2: "z", ignored: "ignored" })).toBe(
-        "/a/y/b/z/c"
+        "/a/y/b/z/c",
       );
     });
 
     it("should build paths with hyphens", () => {
       expect(path`/a/${"p-1"}-${"p-2"}`.build({ "p-1": "x", "p-2": "y" })).toBe(
-        "/a/x-y"
+        "/a/x-y",
       );
       expect(
-        path`/a/${"p-1"}-${"p-2"}`.build({ "p-1": "w-x", "p-2": "y-z" })
+        path`/a/${"p-1"}-${"p-2"}`.build({ "p-1": "w-x", "p-2": "y-z" }),
       ).toBe("/a/w-x-y-z");
     });
 
     it("should build paths with periods", () => {
       expect(path`/a/${"p.1"}.${"p.2"}`.build({ "p.1": "x", "p.2": "y" })).toBe(
-        "/a/x.y"
+        "/a/x.y",
       );
       expect(
-        path`/a/${"p.1"}.${"p.2"}`.build({ "p.1": "w.x", "p.2": "y.z" })
+        path`/a/${"p.1"}.${"p.2"}`.build({ "p.1": "w.x", "p.2": "y.z" }),
       ).toBe("/a/w.x.y.z");
     });
 
     it("should complain about empty params", () => {
       expect(() =>
-        path`/a/${"p1"}/b/${"p2"}`.build({ p1: "a", p2: "" })
+        path`/a/${"p1"}/b/${"p2"}`.build({ p1: "a", p2: "" }),
       ).toThrow('Empty parameter "p2"');
     });
 
