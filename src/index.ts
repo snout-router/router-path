@@ -1,11 +1,11 @@
 export {
   AnyParam,
-  normalizeParam,
   NormalizeParam,
   Param,
   ParamArg,
   ParamName,
   ParamOrString,
-  path,
   PathPattern,
+  normalizeParam,
+  path,
 } from "./main.js";
