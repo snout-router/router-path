@@ -3,7 +3,7 @@
   "dependencies": {
     "@snout/docusaurus-config": "^6.0.0",
     "@tsconfig/docusaurus": "^2.0.0",
-    "clsx": "^1.1.1",
+    "clsx": "^2.0.0",
     "react": "^17.0.2",
     "typescript": "^5.0.2"
   },
