@@ -44,7 +44,7 @@
   "devDependencies": {
     "@size-limit/preset-small-lib": "^8.2.6",
     "@snout/eslint-config": "^4.0.0",
-    "@snout/jest-config": "^3.0.0",
+    "@snout/jest-config": "^4.0.0",
     "@snout/tsconfig": "^3.0.0",
     "prettier": "^3.0.0",
     "prettier-plugin-organize-imports": "^3.0.0",

@@ -1,4 +1,5 @@
-export {
+export { normalizeParam, path } from "./main.js";
+export type {
   AnyParam,
   NormalizeParam,
   Param,
@@ -6,6 +7,4 @@ export {
   ParamName,
   ParamOrString,
   PathPattern,
-  normalizeParam,
-  path,
 } from "./main.js";
