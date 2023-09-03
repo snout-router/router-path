@@ -14,6 +14,14 @@ type or a string.
 
 ```ts no-transpile
 import { ParamOrString } from "@snout/router-path";
+
+function logParam(param: ParamOrString): void {
+  if (typeof param === "string") {
+    console.log(param);
+  } else {
+    console.log(param.name);
+  }
+}
 ```
 
 Functionally equivalent to:

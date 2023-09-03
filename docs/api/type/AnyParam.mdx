@@ -14,6 +14,10 @@ type.
 
 ```ts no-transpile
 import { AnyParam } from "@snout/router-path";
+
+function logParam(param: AnyParam): void {
+  console.log(param.name);
+}
 ```
 
 Functionally equivalent to:
