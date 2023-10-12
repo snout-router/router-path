@@ -1,0 +1,12 @@
+# DO NOT EDIT - This file is managed by snout-router/repos.
+name: Publish release
+on:
+  push:
+    tags:
+      - "*"
+jobs:
+  publish:
+    name: Snout
+    uses: snout-router/.github/.github/workflows/publish-release.yml@main
+    with:
+      make_target: ""
