@@ -1,9 +1,0 @@
-# DO NOT EDIT - This file is managed by snout-router/repos.
-name: CI
-on:
-  push:
-  pull_request:
-jobs:
-  ci:
-    name: Snout
-    uses: snout-router/.github/.github/workflows/ci.yml@main
