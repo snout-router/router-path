@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunk=self.webpackChunk||[]).push([[363],{6017:t=>{t.exports=JSON.parse('{"title":"Types","slug":"/api/type","permalink":"/router-path/api/type","navigation":{"previous":{"title":"path","permalink":"/router-path/api/function/path"},"next":{"title":"AnyParam","permalink":"/router-path/api/type/AnyParam"}}}')}}]);
