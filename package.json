@@ -47,7 +47,7 @@
     "@snout/jest-config": "^4.0.0",
     "@snout/tsconfig": "^3.0.0",
     "prettier": "^3.0.0",
-    "prettier-plugin-organize-imports": "^3.0.0",
+    "prettier-plugin-organize-imports": "^4.0.0",
     "size-limit": "^11.0.0",
     "typescript": "^5.1.6"
   }
