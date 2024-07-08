@@ -34,19 +34,11 @@ export interface Param<Name extends string, Arg = string> {
   readonly format: (arg: Arg) => string;
 }
 
-export type ParamArg<Subject extends AnyParam> = Subject extends Param<
-  string,
-  infer Arg
->
-  ? Arg
-  : never;
+export type ParamArg<Subject extends AnyParam> =
+  Subject extends Param<string, infer Arg> ? Arg : never;
 
-export type ParamName<Subject extends AnyParam> = Subject extends Param<
-  infer Name,
-  any
->
-  ? Name
-  : never;
+export type ParamName<Subject extends AnyParam> =
+  Subject extends Param<infer Name, any> ? Name : never;
 
 export type ParamOrString = AnyParam | string;
 
@@ -125,11 +117,10 @@ export function path<Params extends ParamsOrStrings>(
 type AnyParams = AnyParam[];
 type ParamsOrStrings = ParamOrString[];
 
-type Result<Params extends AnyParams> = Params extends Array<
-  Param<infer Name, any>
->
-  ? { [Key in Name]: ParamArg<Extract<Params[number], Param<Key, any>>> }
-  : { [Key in string]: any };
+type Result<Params extends AnyParams> =
+  Params extends Array<Param<infer Name, any>>
+    ? { [Key in Name]: ParamArg<Extract<Params[number], Param<Key, any>>> }
+    : { [Key in string]: any };
 
 type Args<Params extends AnyParams> = AllowOmitUndefined<Result<Params>> & {
   [Key in string]: any;
