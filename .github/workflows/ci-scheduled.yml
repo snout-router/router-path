@@ -1,4 +1,3 @@
-# DO NOT EDIT - This file is managed by snout-router/repos.
 name: CI (scheduled)
 on:
   schedule:
