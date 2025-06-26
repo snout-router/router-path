@@ -33,14 +33,17 @@ export default function TryIt() {
               <strong>Snout Router Path</strong> right here.
             </p>
             <p>
-              If you want <Link to={typescriptUrl}>TypeScript</Link> support,
-              you&apos;ll need to{" "}
+              For better <Link to={typescriptUrl}>TypeScript</Link> support,{" "}
               <Link to={GETTING_STARTED_URL}>open the full sandbox</Link>.
             </p>
           </div>
 
           <div className="col col--10">
-            <Sandbox id={GETTING_STARTED_ID} height="300px" />
+            <Sandbox
+              id={GETTING_STARTED_ID}
+              height="300px"
+              codeMirror={false}
+            />
           </div>
         </div>
       </div>
